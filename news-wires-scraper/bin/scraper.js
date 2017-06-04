@@ -1,0 +1,1 @@
+require('news-wires-scraper')();

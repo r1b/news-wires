@@ -1,0 +1,22 @@
+{
+  "name": "news-wires-scraper",
+  "version": "1.0.0",
+  "description": "News scraper for news-wires",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/r1b/news-wires.git"
+  },
+  "author": "Robert C Jensen <rob@computerlab.io>",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/r1b/news-wires/issues"
+  },
+  "homepage": "https://github.com/r1b/news-wires#readme",
+  "dependencies": {
+    "twitter": "^1.7.0"
+  }
+}

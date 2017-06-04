@@ -1,0 +1,37 @@
+{
+  "name": "news-wires-db",
+  "version": "1.0.0",
+  "description": "Database layer for news-wires",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/r1b/news-wires.git"
+  },
+  "keywords": [
+    "news",
+    "wires",
+    "headlines",
+    "javascript",
+    "twitter"
+  ],
+  "author": "Robert C Jensen <rob@computerlab.io>",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/r1b/news-wires/issues"
+  },
+  "homepage": "https://github.com/r1b/news-wires#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.1",
+    "pg": "^6.2.3",
+    "pg-hstore": "^2.3.2",
+    "request": "^2.81.0",
+    "request-promise-native": "^1.0.4",
+    "sequelize": "^3.30.4"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^2.7.0"
+  }
+}
