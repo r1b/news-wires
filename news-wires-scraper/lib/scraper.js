@@ -17,7 +17,8 @@ module.exports = function () {
         if (newsSource.twitterUserId === event.user.id) {
           let urls = event.entities.urls.map((url) => url.expanded_url);
           urls.forEach((url) => {
-            newsSource.scrape(url)
+            newsSource
+              .scrape(url)
               .then(([newsItem, newsSource]) => {
                 console.log(`[${newsSource.get('name')}] ${newsItem.get('headline')} ${newsItem.get('url')}`);
               })
@@ -26,5 +27,6 @@ module.exports = function () {
         }
       });
     });
+    stream.on('error', (error) => { console.error(error) });
   });
 };
