@@ -15,7 +15,7 @@ module.exports = function () {
     stream.on('data', (event) => {
       newsSources.forEach((newsSource) => {
         if (newsSource.twitterUserId === event.user.id) {
-          let urls = event.entities.urls.map((url) => url.expanded_url);
+          let urls = event.entities.urls.map((urlObj) => urlObj.url);
           urls.forEach((url) => {
             newsSource
               .scrape(url)
