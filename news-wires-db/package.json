@@ -1,7 +1,7 @@
 {
   "name": "news-wires-db",
   "version": "1.0.0",
-  "description": "Database layer for news-wires",
+  "description": "Database module for news-wires",
   "main": "index.js",
   "scripts": {
     "test": "npm test"
