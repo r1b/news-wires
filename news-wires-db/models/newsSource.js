@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'news_source',
     classMethods: {
       associate: function (models) {
-        models.NewsSource.hasMany(models.NewsItem);
+        models.NewsSource.hasMany(models.NewsItem, {foreignKey: 'newsSourceId'});
       },
     },
     instanceMethods: {
@@ -41,10 +41,19 @@ module.exports = (sequelize, DataTypes) => {
         return (
           request({'uri': url, 'resolveWithFullResponse': true})
             .then(function (response) {
-              if (
-                response.statusCode === 200 &&
-                that.urlRegexes.some((re) => new RegExp(re).test(response.request.uri.href))
+              if (response.statusCode !== 200) {
+                return Promise.reject(
+                  new Error(`Got ${response.statusCode} when fetching ${response.request.uri.href}`)
+                )
+              }
+              else if (
+                !that.urlRegexes.some((re) => new RegExp(re).test(response.request.uri.href))
               ) {
+                return Promise.reject(
+                  new Error(`${response.request.uri.href} did not match any of ${that.urlRegexes}`)
+                )
+              }
+              else {
                 return NewsItem.create({
                   url: response.request.uri.href.split('?')[0], // die analytics xXx KILL
                   headline: that.parseHeadline(cheerio.load(response.body)),
@@ -57,10 +66,8 @@ module.exports = (sequelize, DataTypes) => {
                   });
                 });
               }
-              else {
-                return Promise.reject('Whatever');
-              }
             })
+            .catch((error) => Promise.reject(error)) // XXX do i need this?
         );
       },
       parseHeadline: function ($) {
