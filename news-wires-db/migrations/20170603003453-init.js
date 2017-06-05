@@ -20,12 +20,8 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      urlRegexes: {
-        type: Sequelize.ARRAY(Sequelize.STRING),
-        allowNull: false
-      },
-      headlineSelector: {
-        type: Sequelize.STRING,
+      urlToHeadlineSelectorMap: {
+        type: Sequelize.JSON,
         allowNull: false
       },
       createdAt: {
@@ -72,7 +68,8 @@ module.exports = {
     }));
   },
   down: function (queryInterface, Sequelize) {
-    return queryInterface.dropTable('news_item')
+    return queryInterface
+            .dropTable('news_item')
             .then(queryInterface.dropTable('news_source'));
   }
 };

@@ -6,20 +6,43 @@ module.exports = {
       {
         name: 'AP',
         twitterUserId: 51241574,
-        urlRegexes: ['apnews\\.com'],
-        headlineSelector: '.topTitle'
+        urlToHeadlineSelectorMap: JSON.stringify({
+          'apnews\\.com': ['.topTitle']
+        })
       },
       {
         name: 'REUTERS',
         twitterUserId: 1652541,
-        urlRegexes: ['reuters\\.com'],
-        headlineSelector: '.article-headline'
+        urlToHeadlineSelectorMap: JSON.stringify({
+          'reuters\\.com': ['.article-headline']
+        })
       },
       {
         name: 'AFP',
         twitterUserId: 380648579,
-        urlRegexes: ['yahoo\\.com'],
-        headlineSelector: '#SideTop-0-HeadComponentTitle h1'
+        urlToHeadlineSelectorMap: JSON.stringify({
+          'www\\.yahoo\\.com/news|sg\\.news\\.yahoo\\.com': [
+            '#SideTop-0-HeadComponentTitle h1'
+          ],
+          'au\\.news\\.yahoo\\.com': ['.page-header-title']
+        })
+      },
+      {
+        name: 'UPI',
+        twitterUserId: 16666806,
+        urlToHeadlineSelectorMap: JSON.stringify({
+          'upi\\.com': ['.st_headline'],
+        })
+      },
+      {
+        name: 'BLOOMBERG',
+        twitterUserId: 34713362,
+        urlToHeadlineSelectorMap: JSON.stringify({
+          'bloomberg\\.com/news/articles': [
+            '.lede-text-only__highlight',
+            '.lede-large-content__highlight'
+          ]
+        })
       }
     ], {});
   },
