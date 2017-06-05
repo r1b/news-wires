@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  h1= title
+  for newsItem in newsItems
+    div(class='news-item')
+      b #{newsItem.NewsSource.name}&nbsp;
+      a(href='#{newsItem.url}') #{newsItem.headline}
