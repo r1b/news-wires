@@ -11,9 +11,6 @@ Sick of [spin](http://www.imdb.com/title/tt0114512/)? Just watch the wires!
 * Associated Press (AP)
 * Reuters
 * Agence France-Presse (AFP)
-
-## Pending Services
-
 * United Press International (UPI)
 * Bloomberg
 
