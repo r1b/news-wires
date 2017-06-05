@@ -6,3 +6,11 @@ body {
 a {
   color: #00B7FF;
 }
+
+td {
+    padding: 4px;
+}
+
+.source-name {
+    width: 100px;
+}
