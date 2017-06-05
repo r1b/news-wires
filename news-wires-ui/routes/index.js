@@ -28,7 +28,7 @@ router.get('/:page?', function(req, res, next) {
         ['createdAt', 'DESC']
       ]
     }).then((newsItems) => {
-      res.render('index', { newsItems: newsItems, page: page, title: 'news-wires'});
+      res.render('index', { newsItems: newsItems, page: page, title: 'news'});
     });
   }
 });
