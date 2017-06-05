@@ -2,8 +2,8 @@ extends layout
 
 block content
   h1= title
-  for newsItem in newsItems
-    table(class='news')
+  table(class='news')
+    for newsItem in newsItems
       tr(class='item')
         td(class='source-name')
           b #{newsItem.NewsSource.name}
