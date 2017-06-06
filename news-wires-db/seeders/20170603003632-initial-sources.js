@@ -14,7 +14,7 @@ module.exports = {
         name: 'REUTERS',
         twitterUserId: 1652541,
         urlToHeadlineSelectorMap: JSON.stringify({
-          'reuters\\.com': ['.article-headline']
+          'reuters\\.com/article': ['.article-headline']
         })
       },
       {
