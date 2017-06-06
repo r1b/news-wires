@@ -39,8 +39,8 @@ module.exports = {
         twitterUserId: 34713362,
         urlToHeadlineSelectorMap: JSON.stringify({
           'bloomberg\\.com/news/articles': [
-            '.lede-text-only__highlight',
-            '.lede-large-content__highlight'
+            '.lede-text-only__hed .lede-text-only__highlight',
+            '.lede-large-content__hed .lede-large-content__highlight'
           ]
         })
       }
