@@ -1,6 +1,11 @@
 body {
-  padding: 50px;
+  padding: 36px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  margin: 0;
+  padding: .67em .67em;
 }
 
 a {
@@ -8,9 +13,22 @@ a {
 }
 
 td {
-    padding: 4px;
+  padding: 4px;
+}
+
+#content {
+  background: snow;
+}
+
+.news {
+  padding: 12px;
+  width: 100%;
 }
 
 .source-name {
-    width: 100px;
+  width: 100px;
+}
+
+.pagination {
+  padding: 16px;
 }

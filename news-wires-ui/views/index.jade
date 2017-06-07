@@ -1,11 +1,15 @@
 extends layout
 
 block content
-  h1= title
-  table(class='news')
-    for newsItem in newsItems
-      tr(class='item')
-        td(class='source-name')
-          b #{newsItem.NewsSource.name}
-        td(class='headline')
-          a(href='#{newsItem.url}') #{newsItem.headline}
+  div(id='content')
+    h1= title
+    table(class='news')
+      for newsItem in newsItems
+        tr(class='item')
+          td(class='source-name')
+            b #{newsItem.NewsSource.name}
+          td(class='headline')
+            a(href='#{newsItem.url}') #{newsItem.headline}
+    if (page * newsItemsPerPage) < count
+      div(class='pagination')
+        a(href='/#{page+1}') More

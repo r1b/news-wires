@@ -15,3 +15,10 @@ Sick of [spin](http://www.imdb.com/title/tt0114512/)? Just watch the wires!
 * Bloomberg
 
 ## Project Structure
+
+## Roadmap
+
+* Filters
+    * By dates
+    * By keywords
+    * By sources
