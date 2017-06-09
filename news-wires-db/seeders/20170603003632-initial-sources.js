@@ -7,7 +7,7 @@ module.exports = {
         name: 'AP',
         twitterUserId: 51241574,
         urlToHeadlineSelectorMap: JSON.stringify({
-          'apnews\\.com': ['.topTitle']
+          'apnews\\.com/[0-9a-f]{32}': ['.topTitle']
         })
       },
       {
