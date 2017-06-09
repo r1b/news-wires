@@ -1,6 +1,7 @@
-var express = require('express');
-var models = require('news-wires-db');
-var router = express.Router();
+const express = require('express');
+const moment = require('moment');
+const models = require('news-wires-db');
+const router = express.Router();
 
 const NEWS_ITEMS_PER_PAGE = 20;
 
@@ -29,7 +30,10 @@ router.get('/:page?', function(req, res, next) {
       ]
     }).then((result) => {
       let count = result.count;
-      let newsItems = result.rows;
+      let newsItems = result.rows.map((newsItem) => {
+        newsItem.fromNow = moment(newsItem.createdAt).fromNow();
+        return newsItem;
+      });
       res.render('index', {
         count: count,
         newsItems: newsItems,

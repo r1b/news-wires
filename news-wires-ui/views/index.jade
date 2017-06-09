@@ -10,6 +10,8 @@ block content
             b #{newsItem.NewsSource.name}
           td(class='headline')
             a(href='#{newsItem.url}') #{newsItem.headline}
+          td(class='from-now')
+            span #{newsItem.fromNow}
     if (page * newsItemsPerPage) < count
       div(class='pagination')
         a(href='/#{page+1}') More
