@@ -15,7 +15,7 @@ router.get('/:page?', function(req, res, next) {
     page = parseInt(req.params.page);
   }
 
-  if (isNaN(page)) {
+  if (isNaN(page) || page < 1) {
     res.render('error', { message: "Error", error: new Error('Invalid page') });
   }
   else {
