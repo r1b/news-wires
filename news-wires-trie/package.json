@@ -1,5 +1,5 @@
 {
-  "name": "trie",
+  "name": "news-wires-trie",
   "version": "1.0.0",
   "description": "Trie data structure",
   "main": "index.js",
