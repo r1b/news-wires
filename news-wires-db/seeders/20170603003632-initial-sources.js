@@ -6,43 +6,39 @@ module.exports = {
       {
         name: 'AP',
         twitterUserId: 51241574,
-        urlToHeadlineSelectorMap: JSON.stringify({
-          'apnews\\.com/[0-9a-f]{32}': ['.topTitle']
-        })
+        urlRegexps: [
+          'apnews\\.com/[0-9a-f]{32}'
+        ]
       },
       {
         name: 'REUTERS',
         twitterUserId: 1652541,
-        urlToHeadlineSelectorMap: JSON.stringify({
-          'reuters\\.com/article': ['.article-headline']
-        })
+        urlRegexps: [
+          'reuters\\.com/article'
+        ]
       },
       {
         name: 'AFP',
         twitterUserId: 380648579,
-        urlToHeadlineSelectorMap: JSON.stringify({
-          'www\\.yahoo\\.com/news|sg\\.news\\.yahoo\\.com': [
-            '#SideTop-0-HeadComponentTitle h1'
-          ],
-          'au\\.news\\.yahoo\\.com': ['.page-header-title']
-        })
+        urlRegexps: [
+          'www\\.yahoo\\.com/news',
+          'sg\\.news\\.yahoo\\.com',
+          'au\\.news\\.yahoo\\.com'
+        ]
       },
       {
         name: 'UPI',
         twitterUserId: 16666806,
-        urlToHeadlineSelectorMap: JSON.stringify({
-          'upi\\.com': ['.st_headline'],
-        })
+        urlRegexps: [
+          'upi\\.com'
+        ]
       },
       {
         name: 'BLOOMBERG',
         twitterUserId: 34713362,
-        urlToHeadlineSelectorMap: JSON.stringify({
-          'bloomberg\\.com/news/articles': [
-            '.lede-text-only__hed .lede-text-only__highlight',
-            '.lede-large-content__hed .lede-large-content__highlight'
-          ]
-        })
+        urlRegexps: [
+          'bloomberg\\.com/news/articles'
+        ]
       }
     ], {});
   },

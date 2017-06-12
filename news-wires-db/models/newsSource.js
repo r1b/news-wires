@@ -17,9 +17,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    urlToHeadlineSelectorMap: {
-      comment: 'A mapping from a URL regexp to a CSS selector that can parse its headline',
-      type: DataTypes.JSON,
+    urlRegexps: {
+      comment: 'A list of regexps that determine which URLs to scrape',
+      type: DataTypes.ARRAY(DataTypes.TEXT),
       allowNull: false
     }
   }, {
@@ -30,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     instanceMethods: {
+      // FIXME : Move this to news-wires-scraper
       scrape: function (url) {
         const that = this;
         const NewsItem = sequelize.models.NewsItem;
@@ -43,15 +44,11 @@ module.exports = (sequelize, DataTypes) => {
                 )
               }
               else {
-                let urlRegexps = Object.keys(that.urlToHeadlineSelectorMap);
-                for (let urlRegexp of urlRegexps) {
+                for (let urlRegexp of that.urlRegexps) {
                   if (new RegExp(urlRegexp).test(response.request.uri.href)) {
                     return NewsItem.create({
                       url: response.request.uri.href.split('?')[0], // die analytics xXx KILL
-                      headline: that.parseHeadline(
-                        cheerio.load(response.body),
-                        that.urlToHeadlineSelectorMap[urlRegexp]
-                      ),
+                      headline: that.parseHeadline(cheerio.load(response.body)),
                       newsSourceId: that.get('id')
                     }, {
                       'include': [sequelize.models.NewsSource]
@@ -63,20 +60,19 @@ module.exports = (sequelize, DataTypes) => {
                   }
                 }
                 return Promise.reject(
-                  new Error(`${response.request.uri.href} did not match any of ${urlRegexps}`)
+                  new Error(`${response.request.uri.href} did not match any of ${that.urlRegexps}`)
                 )
               }
             })
             .catch((error) => Promise.reject(error)) // XXX do i need this?
         );
       },
-      parseHeadline: function ($, selectors) {
+      parseHeadline: function ($) {
         let headline;
-        for (let selector of selectors) {
-          headline = $(selector).text();
-          if (headline) { return headline }
+        headline = $('meta[property="og:title"]').attr('content');
+        if (!headline) {
+          console.warn(`Could not parse headline`);
         }
-        console.warn(`Could not parse headline with selectors ${selectors}`);
         return headline;
       }
     }
