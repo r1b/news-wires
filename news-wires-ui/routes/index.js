@@ -1,5 +1,6 @@
 const express = require('express');
 const moment = require('moment');
+const i18n = require('i18n-2');
 const models = require('news-wires-db');
 const router = express.Router();
 
@@ -16,7 +17,10 @@ router.get('/:page?', function(req, res, next) {
   }
 
   if (isNaN(page) || page < 1) {
-    res.render('error', { message: "Error", error: new Error('Invalid page') });
+    res.render('error', {
+      message: i18n.__('Error'),
+      error: new Error(i18n.__('Invalid page'))
+    });
   }
   else {
     models.NewsItem.findAndCountAll({
@@ -39,7 +43,8 @@ router.get('/:page?', function(req, res, next) {
         newsItems: newsItems,
         page: page,
         newsItemsPerPage: NEWS_ITEMS_PER_PAGE,
-        title: 'news'
+        title: i18n.__('news'),
+        paginationTitle: i18n.__('More')
       });
     });
   }

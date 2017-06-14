@@ -14,4 +14,4 @@ block content
             span #{newsItem.fromNow}
     if (page * newsItemsPerPage) < count
       div(class='pagination')
-        a(href='/#{page+1}') More
+        a(href='/#{page+1}') #{paginationTitle}

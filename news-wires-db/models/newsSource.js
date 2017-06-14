@@ -21,6 +21,10 @@ module.exports = (sequelize, DataTypes) => {
       comment: 'A list of regexps that determine which URLs to scrape',
       type: DataTypes.ARRAY(DataTypes.TEXT),
       allowNull: false
+    },
+    locale: {
+      comment: 'The language and (optionally) country of news from this source',
+      type: DataTypes.STRING
     }
   }, {
     tableName: 'news_source',
