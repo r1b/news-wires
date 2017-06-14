@@ -35,6 +35,7 @@ router.get('/:page?', function(req, res, next) {
     }).then((result) => {
       let count = result.count;
       let newsItems = result.rows.map((newsItem) => {
+        moment.locale(newsItem.NewsSource.locale);
         newsItem.fromNow = moment(newsItem.createdAt).fromNow();
         return newsItem;
       });
