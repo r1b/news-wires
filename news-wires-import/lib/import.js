@@ -15,7 +15,7 @@ function getUrlsFromStatuses (screenName) {
     twitterClient
       .get('statuses/user_timeline', {
         screen_name: screenName,
-        count: 200,
+        count: 200, // Maximum allowable by Twitter rn
         exclude_replies: true,
         include_rts: false
       })
@@ -57,8 +57,8 @@ function normalizeUrls (urls) {
 function findUrlRegex (normalizedUrls) {
   normalizedUrls = normalizedUrls.filter((url) => url !== null);
 
-  let originFrequency = {};
-  let topOrigin = {origin: null, count: 0};
+  let hostnameFrequency = {};
+  let topHostname = {hostname: null, count: 0};
 
   for (let url of normalizedUrls) {
     url = URL.parse(url);
@@ -66,32 +66,21 @@ function findUrlRegex (normalizedUrls) {
     // Ignores embedded tweets
     if (url.hostname === 'twitter.com') { continue; }
 
-    // FIXME : The WHATWG api would be less brittle
-    let origin = `${url.protocol}//${url.hostname}`;
+    let hostname = url.hostname;
 
-    if (originFrequency[origin] === undefined) {
-      originFrequency[origin] = 1;
+    if (hostnameFrequency[hostname] === undefined) {
+      hostnameFrequency[hostname] = 1;
     }
     else {
-      originFrequency[origin] = originFrequency[origin] + 1;
+      hostnameFrequency[hostname] = hostnameFrequency[hostname] + 1;
     }
 
-    if (topOrigin.count < originFrequency[origin]) {
-      topOrigin = { origin: origin, count: originFrequency[origin] }
+    if (topHostname.count < hostnameFrequency[hostname]) {
+      topHostname = { hostname: hostname, count: hostnameFrequency[hostname] };
     }
   }
 
-  normalizedUrls = normalizedUrls.filter((url) => {
-    return url.startsWith(topOrigin.origin);
-  });
-
-  let urlTrie = new Trie();
-
-  normalizedUrls.forEach((url) => {
-    urlTrie.insert(url, true);
-  });
-
-  return urlTrie.lcp();
+  return topHostname.hostname;
 }
 
 module.exports = function (screenName) {
