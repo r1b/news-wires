@@ -16,7 +16,10 @@ router.get('/:page?', function(req, res, next) {
   }
 
   if (isNaN(page) || page < 1) {
-    res.render('error', { message: "Error", error: new Error('Invalid page') });
+    res.render('error', {
+      message: req.i18n.__('Error'),
+      error: new Error(req.i18n.__('Invalid page'))
+    });
   }
   else {
     models.NewsItem.findAndCountAll({
@@ -27,10 +30,14 @@ router.get('/:page?', function(req, res, next) {
       offset: NEWS_ITEMS_PER_PAGE * (page - 1),
       order: [
         ['createdAt', 'DESC']
-      ]
+      ],
+      where: {
+        '$NewsSource.locale$': req.i18n.getLocale()
+      }
     }).then((result) => {
       let count = result.count;
       let newsItems = result.rows.map((newsItem) => {
+        moment.locale(newsItem.NewsSource.locale);
         newsItem.fromNow = moment(newsItem.createdAt).fromNow();
         return newsItem;
       });
@@ -39,7 +46,8 @@ router.get('/:page?', function(req, res, next) {
         newsItems: newsItems,
         page: page,
         newsItemsPerPage: NEWS_ITEMS_PER_PAGE,
-        title: 'news'
+        title: req.i18n.__('news'),
+        paginationTitle: req.i18n.__('More')
       });
     });
   }

@@ -21,6 +21,10 @@ module.exports = (sequelize, DataTypes) => {
       comment: 'A list of regexps that determine which URLs to scrape',
       type: DataTypes.ARRAY(DataTypes.TEXT),
       allowNull: false
+    },
+    locale: {
+      comment: 'The language and (optionally) country of news from this source',
+      type: DataTypes.STRING
     }
   }, {
     tableName: 'news_source',
@@ -69,10 +73,13 @@ module.exports = (sequelize, DataTypes) => {
       },
       parseHeadline: function ($) {
         let headline;
-        headline = $('meta[property="og:title"]').attr('content');
-        if (!headline) {
-          console.warn(`Could not parse headline`);
-        }
+        headline = $('meta[property="og:title"]').attr('content') || $('title').text();
+        [/\s+\-\s+/, /\s+\|\s+/].forEach((sepRegexp) => {
+          if (sepRegexp.test(headline)) {
+            console.warn(`Stripping \`${sepRegexp}\` from ${headline}`);
+            headline = headline.split(sepRegexp)[0];
+          }
+        });
         return headline;
       }
     }

@@ -4,10 +4,39 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+const i18n = require('i18n-2');
 
 var index = require('./routes/index');
 
 var app = express();
+
+// i18n setup
+i18n.expressBind(app, {
+  locales: {
+    'en': {
+      'news': 'news',
+      'More': 'More',
+      'Error': 'Error',
+      'Invalid page': 'Invalid page'
+    },
+    'es': {
+      'news': 'noticias',
+      'More': 'Más',
+      'Error': 'Error',
+      'Invalid page': 'Página no válida'
+    }
+  }
+});
+app.use(function(req, res, next) {
+  // FIXME : This is gonna get reaaaal brittle reaaaal fast
+  if (req.hostname.startsWith('noticias')) {
+    req.i18n.setLocale('es');
+  }
+  else {
+    req.i18n.setLocale('en');
+  }
+  next();
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
