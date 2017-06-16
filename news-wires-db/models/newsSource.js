@@ -73,7 +73,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       parseHeadline: function ($) {
         let headline;
-        headline = $('meta[property="og:title"]').attr('content');
+        headline = $('meta[property="og:title"]').attr('content') || $('title').text();
         if (!headline) {
           console.warn(`Could not parse headline`);
         }
