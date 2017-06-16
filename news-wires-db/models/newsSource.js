@@ -74,7 +74,7 @@ module.exports = (sequelize, DataTypes) => {
       parseHeadline: function ($) {
         let headline;
         headline = $('meta[property="og:title"]').attr('content') || $('title').text();
-        [/\s+-\s+/, /\s+|\s+/].forEach((sepRegexp) => {
+        [/\s+\-\s+/, /\s+\|\s+/].forEach((sepRegexp) => {
           if (sepRegexp.test(headline)) {
             console.warn(`Stripping \`${sepRegexp}\` from ${headline}`);
             headline = headline.split(sepRegexp)[0];
