@@ -74,9 +74,13 @@ module.exports = (sequelize, DataTypes) => {
       parseHeadline: function ($) {
         let headline;
         headline = $('meta[property="og:title"]').attr('content') || $('title').text();
-        if (!headline) {
-          console.warn(`Could not parse headline`);
-        }
+        [' - ', ' | '].forEach((sep) => {
+          if (headline.includes(sep)) {
+            console.warn(`Stripping \`${sep}\` from ${headline}`);
+            headline = headline.split(sep)[0];
+          }
+        });
+
         return headline;
       }
     }
