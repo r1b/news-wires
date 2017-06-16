@@ -29,7 +29,7 @@ i18n.expressBind(app, {
 });
 app.use(function(req, res, next) {
   // FIXME : This is gonna get reaaaal brittle reaaaal fast
-  if (req.hostname.startswith('noticias')) {
+  if (req.hostname.startsWith('noticias')) {
     req.i18n.setLocale('es');
   }
   else {
