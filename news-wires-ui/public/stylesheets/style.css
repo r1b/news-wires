@@ -1,29 +1,28 @@
 body {
   padding: 36px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 17px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 h1 {
   margin: 0;
-  padding: .67em .67em;
-}
-
-a {
-  color: #00B7FF;
 }
 
 td {
-  padding: 4px;
+  padding: 4px 16px 0px 0px;
 }
 
-.news {
+#content {
   padding: 12px;
 }
 
-.source-name {
-  width: 100px;
+.menu {
+  padding: 10px 0px;
+}
+
+.menu a {
+  padding: 0px 4px 0px 0px;
 }
 
 .pagination {
-  padding: 16px;
+  padding: 10px 0px;
 }

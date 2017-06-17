@@ -41,13 +41,15 @@ router.get('/:page?', function(req, res, next) {
         newsItem.fromNow = moment(newsItem.createdAt).fromNow();
         return newsItem;
       });
+
       res.render('index', {
         count: count,
         newsItems: newsItems,
         page: page,
         newsItemsPerPage: NEWS_ITEMS_PER_PAGE,
         title: req.i18n.__('news'),
-        paginationTitle: req.i18n.__('More')
+        paginationTitle: req.i18n.__('More'),
+        locales: req.i18n.locales
       });
     });
   }

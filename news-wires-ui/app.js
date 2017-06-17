@@ -14,16 +14,23 @@ var app = express();
 i18n.expressBind(app, {
   locales: {
     'en': {
+      // XXX this is a terrible hack sorry god
+      '$HREF': 'https://news.r1b.solutions',
+
       'news': 'news',
       'More': 'More',
       'Error': 'Error',
-      'Invalid page': 'Invalid page'
+      'Invalid page': 'Invalid page',
+      'Wire services for everyone': 'Wire services for everyone'
     },
     'es': {
+      '$HREF': 'https//noticias.r1b.solutions',
+
       'news': 'noticias',
       'More': 'Más',
       'Error': 'Error',
-      'Invalid page': 'Página no válida'
+      'Invalid page': 'Página no válida',
+      'Wire services for everyone': 'Servicios de cable para todos'
     }
   }
 });
