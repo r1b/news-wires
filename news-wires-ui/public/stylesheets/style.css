@@ -26,3 +26,9 @@ td {
 .pagination {
   padding: 10px 0px;
 }
+
+@media only screen and (max-width: 750px) and (min-width: 300px) {
+  body {
+    font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+  }
+}
