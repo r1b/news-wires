@@ -84,7 +84,3 @@ module.exports = (sequelize, DataTypes) => {
 
   return NewsSource;
 };
-
-
-
-module.exports = NewsSource;
