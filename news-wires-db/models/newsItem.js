@@ -21,6 +21,9 @@ module.exports = (sequelize, DataTypes) => {
       model: 'news_source',
       key: 'id'
     }
+  }, {
+    freezeTableName: true,
+    tableName: 'news_item'
   });
 
   NewsItem.associate = function (models) {

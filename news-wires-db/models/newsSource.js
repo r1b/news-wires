@@ -26,6 +26,9 @@ module.exports = (sequelize, DataTypes) => {
       comment: 'The language and (optionally) country of news from this source',
       type: DataTypes.STRING
     }
+  }, {
+    freezeTableName: true,
+    tableName: 'news_source'
   });
 
   NewsSource.associate = function (models) {
