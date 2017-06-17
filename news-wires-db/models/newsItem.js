@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) => {
+const NewsItem = (sequelize, DataTypes) => {
   return sequelize.define('NewsItem', {
     url: {
       comment: 'The url where the news item can be accessed',
@@ -21,12 +21,11 @@ module.exports = (sequelize, DataTypes) => {
       model: 'news_source',
       key: 'id'
     }
-  }, {
-    tableName: 'news_item',
-    classMethods: {
-      associate: function (models) {
-        models.NewsItem.belongsTo(models.NewsSource, {foreignKey: 'newsSourceId'});
-      },
-    }
   });
 };
+
+NewsItem.associate = function (models) {
+  models.NewsItem.belongsTo(models.NewsSource, {foreignKey: 'newsSourceId'});
+};
+
+module.exports = NewsItem;
