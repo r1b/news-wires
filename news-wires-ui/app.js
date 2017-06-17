@@ -24,7 +24,7 @@ i18n.expressBind(app, {
       'Wire services for everyone': 'Wire services for everyone'
     },
     'es': {
-      '$HREF': 'https//noticias.r1b.solutions',
+      '$HREF': 'https://noticias.r1b.solutions',
 
       'news': 'noticias',
       'More': 'Más',
