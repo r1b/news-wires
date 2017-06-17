@@ -1,5 +1,5 @@
-const NewsItem = (sequelize, DataTypes) => {
-  return sequelize.define('NewsItem', {
+module.exports = (sequelize, DataTypes) => {
+  const NewsItem = sequelize.define('NewsItem', {
     url: {
       comment: 'The url where the news item can be accessed',
       type: DataTypes.STRING,
@@ -22,10 +22,10 @@ const NewsItem = (sequelize, DataTypes) => {
       key: 'id'
     }
   });
-};
 
-NewsItem.associate = function (models) {
-  models.NewsItem.belongsTo(models.NewsSource, {foreignKey: 'newsSourceId'});
-};
+  NewsItem.associate = function (models) {
+    models.NewsItem.belongsTo(models.NewsSource, {foreignKey: 'newsSourceId'});
+  };
 
-module.exports = NewsItem;
+  return NewsItem;
+};
