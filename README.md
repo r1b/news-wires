@@ -12,4 +12,3 @@ Sick of [spin](http://www.imdb.com/title/tt0114512/)? Just watch the wires!
 * Reuters
 * Agence France-Presse (AFP)
 * United Press International (UPI)
-* Bloomberg
