@@ -31,6 +31,14 @@ module.exports = function () {
         }
       });
     });
-    stream.on('error', (error) => { console.error(error) });
+
+    stream.on('error', (error) => {
+      console.error(error);
+    });
+
+    stream.on('end', (response) => {
+      console.error('Twitter stream ended!');
+      console.error(response);
+    });
   });
 };
