@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var app = require('../app');
+var app = require('../apps/main');
 var debug = require('debug')('news-wires-ui:server');
 var http = require('http');
 

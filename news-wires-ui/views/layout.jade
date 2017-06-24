@@ -24,4 +24,11 @@ html
     link(rel='shortcut icon', type='image/x-icon', href='/favicon.ico')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    block content
+    div(id='content')
+      h1= title
+      nav(class='menu')
+        each locale, name in locales
+          a(href='#{locale.$HREF}') #{name}
+        a(href='#{__("/privacy")}') #{__("privacy")}
+        a(href='#{__("/terms")}') #{__("terms")}
+      block content

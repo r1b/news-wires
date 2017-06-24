@@ -1,11 +1,9 @@
-const express = require('express');
 const moment = require('moment');
 const models = require('news-wires-db');
-const router = express.Router();
 
 const NEWS_ITEMS_PER_PAGE = 20;
 
-router.get('/:page?', function(req, res, next) {
+module.exports = (req, res, next) => {
   let page;
 
   if (!req.params.page) {
@@ -15,11 +13,11 @@ router.get('/:page?', function(req, res, next) {
     page = parseInt(req.params.page);
   }
 
+  // XXX: Don't really need this anymore - the route takes care of it
   if (isNaN(page) || page < 1) {
-    res.render('error', {
-      message: req.i18n.__('Error'),
-      error: new Error(req.i18n.__('Invalid page'))
-    });
+    const error = new Error(req.i18n.__('Invalid page'));
+    error.status = 404;
+    next(error);
   }
   else {
     models.NewsItem.findAndCountAll({
@@ -36,6 +34,13 @@ router.get('/:page?', function(req, res, next) {
       }
     }).then((result) => {
       let count = result.count;
+
+      if (result.rows.length == 0) {
+        const error = new Error(req.i18n.__('Invalid page'));
+        error.status = 404;
+        return next(error);
+      }
+
       let newsItems = result.rows.map((newsItem) => {
         moment.locale(newsItem.NewsSource.locale);
         newsItem.fromNow = moment(newsItem.createdAt).fromNow();
@@ -53,6 +58,4 @@ router.get('/:page?', function(req, res, next) {
       });
     });
   }
-});
-
-module.exports = router;
+};

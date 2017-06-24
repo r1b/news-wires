@@ -1,20 +1,15 @@
 extends layout
 
 block content
-  div(id='content')
-    h1= title
-    nav(class='menu')
-      each locale, name in locales
-        a(href='#{locale.$HREF}') #{name}
-    table(class='news')
-      for newsItem in newsItems
-        tr(class='item')
-          td(class='headline')
-            a(href='#{newsItem.url}') #{newsItem.headline}
-          td(class='source-name')
-            b #{newsItem.NewsSource.name}
-          td(class='from-now')
-            span #{newsItem.fromNow}
-    if (page * newsItemsPerPage) < count
-      div(class='pagination')
-        a(href='/#{page+1}' rel='next') #{paginationTitle}
+  table(class='news')
+    for newsItem in newsItems
+      tr(class='item')
+        td(class='headline')
+          a(href='#{newsItem.url}') #{newsItem.headline}
+        td(class='source-name')
+          b #{newsItem.NewsSource.name}
+        td(class='from-now')
+          span #{newsItem.fromNow}
+  if (page * newsItemsPerPage) < count
+    div(class='pagination')
+      a(href='/#{page+1}' rel='next') #{paginationTitle}
