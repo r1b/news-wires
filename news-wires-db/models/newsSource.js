@@ -79,7 +79,7 @@ module.exports = (sequelize, DataTypes) => {
     [/\s+\-\s+/, /\s+\|\s+/].forEach((sepRegexp) => {
       const headlineParts = headline.split(sepRegexp);
       if (sepRegexp.test(headlineParts[headlineParts.length - 1])) {
-        console.warn(`Stripping \`${sepRegexp}\` from ${headline}`);
+        console.warn(`Stripping ${sepRegexp} from ${headline}`);
         headline = headline.split(sepRegexp)[0];
       }
     });
