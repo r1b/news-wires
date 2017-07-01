@@ -8,6 +8,7 @@ module.exports = function () {
         newsIntegrations.forEach((newsIntegration) => {
           newsIntegration.integrate();
         });
+        return newsIntegrations.length;
       })
       .catch((error) => {
         console.error(error);
