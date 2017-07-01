@@ -14,7 +14,7 @@ module.exports = function () {
     const stream = twitterClient.stream('statuses/filter', {follow: userIds});
     stream.on('data', (event) => {
       newsSources.forEach((newsSource) => {
-        if (newsSource.twitterUserId === event.user.id) {
+        if (newsSource.twitterUserId === event.user.id_str) {
           let urls = (
             event.entities.urls
               .map((url) => url.expanded_url)
