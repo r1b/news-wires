@@ -1,7 +1,7 @@
 const cheerio = require('cheerio');
 const FeedParser = require('feedparser');
 const LRU = require('lru-cache');
-const request = require('request');
+const request = require('request-promise-native');
 const Twitter = require('twitter');
 const config = require('news-wires-twitter');
 
@@ -104,17 +104,11 @@ module.exports = (sequelize, DataTypes) => {
     const twitterClient = new Twitter(config(this.screenName));
 
     setInterval(() => {
-      const req = request({
+      request({
         uri: this.config.url,
         resolveWithFullResponse: true,
         maxRedirects: 30
-      });
-
-      req.on('error', (error) => {
-        console.error(error);
-      });
-
-      req.on('response', function (response) {
+      }).then((response) => {
         if (response.statusCode !== 200) {
           this.emit('error', new Error(`Bad status code: ${response.statusCode}`));
         }
@@ -140,6 +134,8 @@ module.exports = (sequelize, DataTypes) => {
             }
           });
         }
+      }).catch((error) => {
+        console.error(error);
       });
     }, 300000);
   };
