@@ -104,7 +104,11 @@ module.exports = (sequelize, DataTypes) => {
     const twitterClient = new Twitter(config(this.screenName));
 
     setInterval(() => {
-      const req = request(this.config.url);
+      const req = request({
+        uri: this.config.url,
+        resolveWithFullResponse: true,
+        maxRedirects: 30
+      });
 
       req.on('error', (error) => {
         console.error(error);
