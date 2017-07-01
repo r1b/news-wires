@@ -79,40 +79,43 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   NewsIntegration.prototype.web = function () {
-    const req = request(this.config.url);
     const twitterClient = new Twitter(config(this.screenName));
     const cache = LRU(this.config.maxCacheSize);
 
-    req.on('error', (error) => {
-      console.error(error);
-    });
+    setInterval(() => {
+      const req = request(this.config.url);
 
-    req.on('response', (response) => {
-      if (response.statusCode !== 200) {
-        this.emit('error', new Error(`Bad status code: ${response.statusCode}`));
-      }
-      else {
-        const $ = cheerio.load(response.body);
-        $(this.config.linkSelector).each((_, element) => {
-          if (!this.cache.get(element.href)) {
-            console.info(`MISS ${element.href}`);
-            twitterClient.post('statuses/update', {
-              status: `${element.text()} ${element.href}`
-            }, (error, tweet, response) => {
-              if (error) {
-                this.emit('error', error);
-              }
-              else {
-                console.log(tweet);
-              }
-            });
-          }
-          else {
-            console.info(`HIT ${element.href}`);
-          }
-        });
-      }
-    });
+      req.on('error', (error) => {
+        console.error(error);
+      });
+
+      req.on('response', (response) => {
+        if (response.statusCode !== 200) {
+          this.emit('error', new Error(`Bad status code: ${response.statusCode}`));
+        }
+        else {
+          const $ = cheerio.load(response.body);
+          $(this.config.linkSelector).each((_, element) => {
+            if (!this.cache.get(element.href)) {
+              console.info(`MISS ${element.href}`);
+              twitterClient.post('statuses/update', {
+                status: `${element.text()} ${element.href}`
+              }, (error, tweet, response) => {
+                if (error) {
+                  this.emit('error', error);
+                }
+                else {
+                  console.log(tweet);
+                }
+              });
+            }
+            else {
+              console.info(`HIT ${element.href}`);
+            }
+          });
+        }
+      });
+    }, 300000);
   };
 
   return NewsIntegration;
