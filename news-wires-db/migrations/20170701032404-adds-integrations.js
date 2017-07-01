@@ -4,19 +4,19 @@ module.exports = {
   up: function (queryInterface, Sequelize) {
     return queryInterface.createTable('news_integration', {
       type: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false
       },
       config: {
-        type: DataTypes.JSON,
+        type: Sequelize.JSON,
         allowNull: false
       },
       screenName: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false
       },
       newsSourceId: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false
       }
     });

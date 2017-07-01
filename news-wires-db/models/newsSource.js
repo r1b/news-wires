@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     twitterUserId: {
       comment: 'The id of the twitter account associated with this source',
-      type: DataTypes.INTEGER,
+      type: DataTypes.BIGINT,
       allowNull: false
     },
     urlRegexps: {
