@@ -32,7 +32,9 @@ do $$
             'rss',
             '{"url": "http://agenciabrasil.ebc.com.br/en/rss/ultimasnoticias/feed.xml"}'::json,
             'nw_abr_en',
-            news_source_id
+            news_source_id,
+            DEFAULT,
+            DEFAULT
         );
 
         news_source_id := (select id from news_source where name = 'ABR' and locale = 'es');
@@ -42,7 +44,9 @@ do $$
             'rss',
             '{"url": "http://agenciabrasil.ebc.com.br/es/rss/ultimasnoticias/feed.xml"}'::json,
             'nw_abr_es',
-            news_source_id
+            news_source_id,
+            DEFAULT,
+            DEFAULT
         );
 
         news_source_id := (select id from news_source where name = 'PTI' and locale = 'en');
@@ -52,7 +56,9 @@ do $$
             'web',
             '{"url": "http://www.ptinews.com/", "linkSelector": ".catLatestHeadline", "maxCacheSize": 6}'::json,
             'nw_pti_en',
-            news_source_id
+            news_source_id,
+            DEFAULT,
+            DEFAULT
         );
     end
 $$
