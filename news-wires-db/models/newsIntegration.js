@@ -44,7 +44,13 @@ module.exports = (sequelize, DataTypes) => {
 
   NewsIntegration.prototype.integrate = function () {
     const NewsItem = sequelize.models.NewsItem;
-    NewsItem.findAll({limit: this.config.maxCacheSize}).then((newsItems) => {
+    NewsItem.findAll({
+      include: [sequelize.models.NewsSource],
+      limit: this.config.maxCacheSize,
+      where: {
+        '$NewsSource.id$': this.newsSourceId
+      }
+    }).then((newsItems) => {
       const cache = LRU(this.config.maxCacheSize);
       cache.load(newsItems.map((newsItem) => newsItem.url));
       this[this.type](cache);
