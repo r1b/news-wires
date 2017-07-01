@@ -42,8 +42,17 @@ module.exports = (sequelize, DataTypes) => {
     models.NewsIntegration.belongsTo(models.NewsSource, {foreignKey: 'newsSourceId'});
   };
 
-  NewsIntegration.prototype.rss = function () {
-    const feedParser = new FeedParser();
+  NewsIntegration.prototype.integrate = function () {
+    const NewsItem = sequelize.models.NewsItem;
+    NewsItem.findAll({limit: this.config.maxCacheSize}).then((newsItems) => {
+      const cache = LRU(this.config.maxCacheSize);
+      cache.load(newsItems.map((newsItem) => newsItem.url));
+      this[this.type](cache);
+    });
+  }
+
+  NewsIntegration.prototype.rss = function (cache) {
+    const feedparser = new FeedParser();
     const req = request(this.config.url);
     const twitterClient = new Twitter(config(this.screenName));
 
@@ -51,7 +60,7 @@ module.exports = (sequelize, DataTypes) => {
       console.error(error);
     });
 
-    req.on('response', (response) => {
+    req.on('response', function (response) {
       if (response.statusCode !== 200) {
         this.emit('error', new Error(`Bad status code: ${response.statusCode}`));
       }
@@ -64,23 +73,29 @@ module.exports = (sequelize, DataTypes) => {
       console.error(error);
     });
 
-    feedparser.on('data', (item) => {
-      twitterClient.post('statuses/update', {
-        status: `${item.title}\n${item.link}`
-      }, (error, tweet, response) => {
-        if (error) {
-          this.emit('error', error);
-        }
-        else {
-          console.log(tweet);
-        }
-      });
+    feedparser.on('data', function (item) {
+      if (!this.cache.get(item.link)) {
+        console.info(`RSS MISS ${item.link}`);
+        twitterClient.post('statuses/update', {
+          status: `${item.title}\n${item.link}`
+        }, (error, tweet, response) => {
+          if (error) {
+            this.emit('error', error);
+          }
+          else {
+            this.cache.set(item.link);
+            console.log(tweet);
+          }
+        });
+      }
+      else {
+        console.info(`RSS HIT ${item.link}`);
+      }
     });
   };
 
-  NewsIntegration.prototype.web = function () {
+  NewsIntegration.prototype.web = function (cache) {
     const twitterClient = new Twitter(config(this.screenName));
-    const cache = LRU(this.config.maxCacheSize);
 
     setInterval(() => {
       const req = request(this.config.url);
@@ -89,7 +104,7 @@ module.exports = (sequelize, DataTypes) => {
         console.error(error);
       });
 
-      req.on('response', (response) => {
+      req.on('response', function (response) {
         if (response.statusCode !== 200) {
           this.emit('error', new Error(`Bad status code: ${response.statusCode}`));
         }
@@ -97,7 +112,7 @@ module.exports = (sequelize, DataTypes) => {
           const $ = cheerio.load(response.body);
           $(this.config.linkSelector).each((_, element) => {
             if (!this.cache.get(element.href)) {
-              console.info(`MISS ${element.href}`);
+              console.info(`WEB MISS ${element.href}`);
               twitterClient.post('statuses/update', {
                 status: `${element.text()} ${element.href}`
               }, (error, tweet, response) => {
@@ -105,12 +120,13 @@ module.exports = (sequelize, DataTypes) => {
                   this.emit('error', error);
                 }
                 else {
+                  this.cache.set(element.href);
                   console.log(tweet);
                 }
               });
             }
             else {
-              console.info(`HIT ${element.href}`);
+              console.info(`WEB HIT ${element.href}`);
             }
           });
         }

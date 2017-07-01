@@ -1,3 +1,1 @@
-module.exports = function () {
-  require('./lib/integrator')();
-};
+module.exports = require('./lib/integrator');

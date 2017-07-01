@@ -30,7 +30,7 @@ do $$
         (
             DEFAULT,
             'rss',
-            '{"url": "http://agenciabrasil.ebc.com.br/en/rss/ultimasnoticias/feed.xml"}'::json,
+            '{"url": "http://agenciabrasil.ebc.com.br/en/rss/ultimasnoticias/feed.xml, "maxCacheSize": 15"}'::json,
             'nw_abr_en',
             news_source_id,
             DEFAULT,
@@ -42,7 +42,7 @@ do $$
         (
             DEFAULT,
             'rss',
-            '{"url": "http://agenciabrasil.ebc.com.br/es/rss/ultimasnoticias/feed.xml"}'::json,
+            '{"url": "http://agenciabrasil.ebc.com.br/es/rss/ultimasnoticias/feed.xml", "maxCacheSize": 15}'::json,
             'nw_abr_es',
             news_source_id,
             DEFAULT,

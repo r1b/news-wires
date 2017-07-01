@@ -5,7 +5,7 @@ module.exports = function () {
     .findAll()
     .then((newsIntegrations) => {
       newsIntegrations.forEach((newsIntegration) => {
-        newsIntegration[newsIntegration.type]();
+        newsIntegration.integrate();
       });
     })
     .catch((error) => {
