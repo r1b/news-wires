@@ -33,6 +33,7 @@ module.exports = (sequelize, DataTypes) => {
 
   NewsSource.associate = function (models) {
     models.NewsSource.hasMany(models.NewsItem, {foreignKey: 'newsSourceId'});
+    models.NewsSource.hasMany(models.NewsIntegration, {foreignKey: 'newsSourceId'});
   };
 
   NewsSource.prototype.scrape = function (url) {
