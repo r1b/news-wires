@@ -5,16 +5,16 @@ insert into news_source values
 (DEFAULT, 'IPS', 42420705, DEFAULT, DEFAULT, '{"ipsnoticias\\.net"}', 'es');
 
 insert into news_source values
-(DEFAULT, 'ABR', '876255914235494400', DEFAULT, DEFAULT, '{"agenciabrasil\\.ebc\\.com\\.br/en"}', 'en');
+(DEFAULT, 'ABR', 876255914235494400, DEFAULT, DEFAULT, '{"agenciabrasil\\.ebc\\.com\\.br/en"}', 'en');
 
 insert into news_source values
-(DEFAULT, 'ABR', '876256940401328129', DEFAULT, DEFAULT, '{"agenciabrasil\\.ebc\\.com\\.br/es"}', 'es');
+(DEFAULT, 'ABR', 876256940401328129, DEFAULT, DEFAULT, '{"agenciabrasil\\.ebc\\.com\\.br/es"}', 'es');
 
 insert into news_source values
 (DEFAULT, 'TASS', 1903712426, DEFAULT, DEFAULT, '{"tass\\.com"}', 'en');
 
 insert into news_source values
-(DEFAULT, 'PTI', '876258514049617920', DEFAULT, DEFAULT, '{"ptinews\\.com/news"}', 'en');
+(DEFAULT, 'PTI', 876258514049617920, DEFAULT, DEFAULT, '{"ptinews\\.com/news"}', 'en');
 
 insert into news_source values
 (DEFAULT, 'XNN', 487118986, DEFAULT, DEFAULT, '{"news\\.xinhuanet\\.com/english"}', 'en');
