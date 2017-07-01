@@ -3,6 +3,11 @@
 module.exports = {
   up: function (queryInterface, Sequelize) {
     return queryInterface.createTable('news_integration', {
+      id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+      },
       type: {
         type: Sequelize.STRING,
         allowNull: false

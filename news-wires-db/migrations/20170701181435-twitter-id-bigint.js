@@ -6,7 +6,7 @@ module.exports = {
       'news_source',
       'twitterUserId',
       {
-        type: DataTypes.BIGINT,
+        type: Sequelize.BIGINT,
         allowNull: false
       }
     );
@@ -17,7 +17,7 @@ module.exports = {
       'news_source',
       'twitterUserId',
       {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false
       }
     );

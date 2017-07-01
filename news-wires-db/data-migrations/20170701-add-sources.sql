@@ -22,29 +22,37 @@ insert into news_source values
 insert into news_source values
 (DEFAULT, 'XNN', 722950850, DEFAULT, DEFAULT, '{"spanish\\.xinhuanet\\.com"}', 'es');
 
-insert into news_integration values
-(
-    DEFAULT,
-    'rss',
-    '{"url": "http://agenciabrasil.ebc.com.br/en/rss/ultimasnoticias/feed.xml"}'::json,
-    'nw_abr_en',
-    (SELECT id from news_source where name = 'ABR' and locale = 'en')
-)
+do $$
+    declare news_source_id integer;
+    begin
+        news_source_id := (select id from news_source where name = 'ABR' and locale = 'en');
+        insert into news_integration values
+        (
+            DEFAULT,
+            'rss',
+            '{"url": "http://agenciabrasil.ebc.com.br/en/rss/ultimasnoticias/feed.xml"}'::json,
+            'nw_abr_en',
+            news_source_id
+        );
 
-insert into news_integration values
-(
-    DEFAULT,
-    'rss',
-    '{"url": "http://agenciabrasil.ebc.com.br/es/rss/ultimasnoticias/feed.xml"}'::json,
-    'nw_abr_es',
-    (SELECT id from news_source where name = 'ABR' and locale = 'es')
-)
+        news_source_id := (select id from news_source where name = 'ABR' and locale = 'es');
+        insert into news_integration values
+        (
+            DEFAULT,
+            'rss',
+            '{"url": "http://agenciabrasil.ebc.com.br/es/rss/ultimasnoticias/feed.xml"}'::json,
+            'nw_abr_es',
+            news_source_id
+        );
 
-insert into news_integration values
-(
-    DEFAULT,
-    'web',
-    '{"url": "http://www.ptinews.com/", "linkSelector": ".catLatestHeadline", "maxCacheSize": 6}'::json,
-    'nw_pti_en',
-    (SELECT id from news_source where name = 'PTI' and locale = 'en')
-)
+        news_source_id := (select id from news_source where name = 'PTI' and locale = 'en');
+        insert into news_integration values
+        (
+            DEFAULT,
+            'web',
+            '{"url": "http://www.ptinews.com/", "linkSelector": ".catLatestHeadline", "maxCacheSize": 6}'::json,
+            'nw_pti_en',
+            news_source_id
+        );
+    end
+$$
