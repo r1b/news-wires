@@ -74,7 +74,7 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     feedparser.on('data', function (item) {
-      if (!this.cache.get(item.link)) {
+      if (!cache.get(item.link)) {
         console.info(`RSS MISS ${item.link}`);
         twitterClient.post('statuses/update', {
           status: `${item.title}\n${item.link}`
@@ -83,7 +83,7 @@ module.exports = (sequelize, DataTypes) => {
             this.emit('error', error);
           }
           else {
-            this.cache.set(item.link);
+            cache.set(item.link);
             console.log(tweet);
           }
         });
@@ -111,7 +111,7 @@ module.exports = (sequelize, DataTypes) => {
         else {
           const $ = cheerio.load(response.body);
           $(this.config.linkSelector).each((_, element) => {
-            if (!this.cache.get(element.href)) {
+            if (!cache.get(element.href)) {
               console.info(`WEB MISS ${element.href}`);
               twitterClient.post('statuses/update', {
                 status: `${element.text()} ${element.href}`
@@ -120,7 +120,7 @@ module.exports = (sequelize, DataTypes) => {
                   this.emit('error', error);
                 }
                 else {
-                  this.cache.set(element.href);
+                  cache.set(element.href);
                   console.log(tweet);
                 }
               });
