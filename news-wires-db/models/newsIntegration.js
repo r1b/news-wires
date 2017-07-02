@@ -124,7 +124,7 @@ module.exports = (sequelize, DataTypes) => {
               url = path.join(baseUrl.hostname, url.path);
             }
             else {
-              url = url.href;
+              url = url.toString();
             }
 
             if (!cache.get(url)) {
