@@ -1,3 +1,4 @@
+/*
 insert into news_source values
 (DEFAULT, 'IPS', 17650854, DEFAULT, DEFAULT, '{"ipsnews\\.net"}', 'en');
 
@@ -21,6 +22,7 @@ insert into news_source values
 
 insert into news_source values
 (DEFAULT, 'XNN', 722950850, DEFAULT, DEFAULT, '{"spanish\\.xinhuanet\\.com"}', 'es');
+*/
 
 do $$
     declare news_source_id integer;
@@ -30,7 +32,7 @@ do $$
         (
             DEFAULT,
             'rss',
-            '{"url": "http://agenciabrasil.ebc.com.br/en/rss/ultimasnoticias/feed.xml, "maxCacheSize": 15"}'::json,
+            '{"url": "http://agenciabrasil.ebc.com.br/en/rss/ultimasnoticias/feed.xml", "maxCacheSize": 15}'::json,
             'nw_abr_en',
             news_source_id,
             DEFAULT,
