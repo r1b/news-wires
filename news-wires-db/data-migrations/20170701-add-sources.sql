@@ -54,7 +54,7 @@ do $$
         (
             DEFAULT,
             'web',
-            '{"url": "http://www.ptinews.com/", "linkSelector": ".catLatestHeadline", "maxCacheSize": 6}'::json,
+            '{"url": "http://www.ptinews.com/", "linkSelector": ".catLatestHeadli", "maxCacheSize": 6}'::json,
             'nw_pti_en',
             news_source_id,
             DEFAULT,

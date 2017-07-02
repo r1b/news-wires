@@ -23,7 +23,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     locale: {
-      comment: 'The language and (optionally) country of news from this source',
+      comment: '(OPTIONAL) The language and (optionally) country of news from this source',
+      type: DataTypes.STRING
+    },
+    headlineSelector: {
+      comment: '(OPTIONAL) CSS selector to parse headlines from this source',
       type: DataTypes.STRING
     }
   }, {
@@ -76,7 +80,14 @@ module.exports = (sequelize, DataTypes) => {
 
   NewsSource.prototype.parseHeadline = function ($) {
     let headline;
-    headline = $('meta[property="og:title"]').attr('content') || $('title').text();
+
+    if (this.headlineSelector) {
+      headline = $(this.headlineSelector).text();
+    }
+    else {
+      headline = $('meta[property="og:title"]').attr('content') || $('title').text();
+    }
+
     [/\s+\-\s+/, /\s+\|\s+/].forEach((sepRegexp) => {
       const headlineParts = headline.split(sepRegexp);
       if (sepRegexp.test(headlineParts[headlineParts.length - 1])) {

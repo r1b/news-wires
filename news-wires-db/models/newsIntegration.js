@@ -1,3 +1,5 @@
+const path = require('path');
+const URL = require('url');
 const cheerio = require('cheerio');
 const FeedParser = require('feedparser');
 const LRU = require('lru-cache');
@@ -52,7 +54,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     }).then((newsItems) => {
       const cache = LRU(this.config.maxCacheSize);
-      cache.load(newsItems.map((newsItem) => newsItem.url));
+      cache.load(newsItems.map((newsItem) => { return { k: newsItem.url, v: true}; }));
       this[this.type](cache);
     });
   }
@@ -89,8 +91,8 @@ module.exports = (sequelize, DataTypes) => {
             this.emit('error', error);
           }
           else {
-            cache.set(item.link);
-            console.log(tweet);
+            cache.set(item.link, true);
+            console.log(`{${tweet.user.screen_name}} ${tweet.text}`);
           }
         });
       }
@@ -102,42 +104,55 @@ module.exports = (sequelize, DataTypes) => {
 
   NewsIntegration.prototype.web = function (cache) {
     const twitterClient = new Twitter(config(this.screenName));
-
-    setInterval(() => {
+    function web () {
       request({
         uri: this.config.url,
         resolveWithFullResponse: true,
         maxRedirects: 30
       }).then((response) => {
         if (response.statusCode !== 200) {
-          this.emit('error', new Error(`Bad status code: ${response.statusCode}`));
+          return Promise.reject(new Error(`Bad status code: ${response.statusCode}`));
         }
         else {
+          const baseUrl = URL.parse(this.config.url);
           const $ = cheerio.load(response.body);
+
           $(this.config.linkSelector).each((_, element) => {
-            if (!cache.get(element.href)) {
-              console.info(`WEB MISS ${element.href}`);
+            let url = URL.parse($(element).attr('href'));
+
+            if (!url.origin) {
+              url = path.join(baseUrl.hostname, url.path);
+            }
+            else {
+              url = url.href;
+            }
+
+            if (!cache.get(url)) {
+              console.info(`WEB MISS ${url}`);
               twitterClient.post('statuses/update', {
-                status: `${element.text()} ${element.href}`
+                status: `${$(element).text()} ${url}`
               }, (error, tweet, response) => {
                 if (error) {
-                  this.emit('error', error);
+                  console.error(error);
                 }
                 else {
-                  cache.set(element.href);
-                  console.log(tweet);
+                  cache.set(url, true);
+                  console.log(`{${tweet.user.screen_name}} ${tweet.text}`);
                 }
               });
             }
             else {
-              console.info(`WEB HIT ${element.href}`);
+              console.info(`WEB HIT ${url}`);
             }
           });
         }
       }).catch((error) => {
         console.error(error);
       });
-    }, 300000);
+
+    }
+    web.call(this);
+    setInterval(web.bind(this), 300000);
   };
 
   return NewsIntegration;
