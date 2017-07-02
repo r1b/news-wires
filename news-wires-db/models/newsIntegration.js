@@ -121,7 +121,7 @@ module.exports = (sequelize, DataTypes) => {
             let url = URL.parse($(element).attr('href'));
 
             if (!url.origin) {
-              url = path.join(baseUrl.hostname, url.path);
+              url = baseUrl.protocol + '//' + baseUrl.hostname + url.path;
             }
             else {
               url = url.toString();
