@@ -12,3 +12,8 @@ Sick of [spin](http://www.imdb.com/title/tt0114512/)? Just watch the wires!
 * Reuters
 * Agence France-Presse (AFP)
 * United Press International (UPI)
+* Inter-Press Service (IPS)
+* Agencia Brasil (ABR)
+* TASS Agency (TASS)
+* Press Trust of India (PTI)
+* Xinhua News Agency (XNA)
