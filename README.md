@@ -9,7 +9,7 @@ Sick of [spin](http://www.imdb.com/title/tt0114512/)? Just watch the wires!
 ## Supported Services
 
 * Associated Press (AP)
-* Reuters
+* Reuters (REU)
 * Agence France-Presse (AFP)
 * United Press International (UPI)
 * Inter-Press Service (IPS)
