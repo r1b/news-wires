@@ -7,6 +7,8 @@ const request = require('request-promise-native');
 const Twitter = require('twitter');
 const config = require('news-wires-twitter');
 
+const POLL_INTERVAL_MS = 300000; // 5 mins
+
 module.exports = (sequelize, DataTypes) => {
   const NewsIntegration = sequelize.define('NewsIntegration', {
     type: {
@@ -60,51 +62,59 @@ module.exports = (sequelize, DataTypes) => {
   }
 
   NewsIntegration.prototype.rss = function (cache) {
-    const feedparser = new FeedParser();
-    const req = request(this.config.url);
     const twitterClient = new Twitter(config(this.screenName));
 
-    req.on('error', (error) => {
-      console.error(error);
-    });
+    function _rss (firstRun) {
+      const feedparser = new FeedParser();
+      const req = request(this.config.url);
 
-    req.on('response', function (response) {
-      if (response.statusCode !== 200) {
-        this.emit('error', new Error(`Bad status code: ${response.statusCode}`));
-      }
-      else {
-        this.pipe(feedparser);
-      }
-    });
+      req.on('error', (error) => {
+        console.error(error);
+      });
 
-    feedparser.on('error', (error) => {
-      console.error(error);
-    });
+      req.on('response', function (response) {
+        if (response.statusCode !== 200) {
+          this.emit('error', new Error(`Bad status code: ${response.statusCode}`));
+        }
+        else {
+          this.pipe(feedparser);
+        }
+      });
 
-    feedparser.on('data', function (item) {
-      if (!cache.get(item.link)) {
-        console.info(`RSS MISS ${item.link}`);
-        twitterClient.post('statuses/update', {
-          status: `${item.title}\n${item.link}`
-        }, (error, tweet, response) => {
-          if (error) {
-            this.emit('error', error);
+      feedparser.on('error', (error) => {
+        console.error(error);
+      });
+
+      feedparser.on('data', function (item) {
+        if (!cache.get(item.link)) {
+          console.info(`RSS MISS ${item.link}`);
+          cache.set(item.link, true);
+
+          if (!firstRun) {
+            twitterClient.post('statuses/update', {
+              status: `${item.title}\n${item.link}`
+            }, (error, tweet, response) => {
+              if (error) {
+                this.emit('error', error);
+              }
+              else {
+                console.log(`{${tweet.user.screen_name}} ${tweet.text}`);
+              }
+            });
           }
-          else {
-            cache.set(item.link, true);
-            console.log(`{${tweet.user.screen_name}} ${tweet.text}`);
-          }
-        });
-      }
-      else {
-        console.info(`RSS HIT ${item.link}`);
-      }
-    });
+        }
+        else {
+          console.info(`RSS HIT ${item.link}`);
+        }
+      });
+    }
+    _rss.call(this, true);
+    setInterval(_rss.bind(this), POLL_INTERVAL_MS);
   };
 
   NewsIntegration.prototype.web = function (cache) {
     const twitterClient = new Twitter(config(this.screenName));
-    function web () {
+    function _web (firstRun) {
       request({
         uri: this.config.url,
         resolveWithFullResponse: true,
@@ -129,17 +139,20 @@ module.exports = (sequelize, DataTypes) => {
 
             if (!cache.get(url)) {
               console.info(`WEB MISS ${url}`);
-              twitterClient.post('statuses/update', {
-                status: `${$(element).text()} ${url}`
-              }, (error, tweet, response) => {
-                if (error) {
-                  console.error(error);
-                }
-                else {
-                  cache.set(url, true);
-                  console.log(`{${tweet.user.screen_name}} ${tweet.text}`);
-                }
-              });
+              cache.set(url, true);
+
+              if (!firstRun) {
+                twitterClient.post('statuses/update', {
+                  status: `${$(element).text()} ${url}`
+                }, (error, tweet, response) => {
+                  if (error) {
+                    console.error(error);
+                  }
+                  else {
+                    console.log(`{${tweet.user.screen_name}} ${tweet.text}`);
+                  }
+                });
+              }
             }
             else {
               console.info(`WEB HIT ${url}`);
@@ -151,8 +164,8 @@ module.exports = (sequelize, DataTypes) => {
       });
 
     }
-    web.call(this);
-    setInterval(web.bind(this), 300000);
+    _web.call(this, true);
+    setInterval(_web.bind(this), POLL_INTERVAL_MS);
   };
 
   return NewsIntegration;
