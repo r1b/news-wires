@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/r1b/news-wires#readme",
   "dependencies": {
-    "twitter": "^1.7.0"
+    "twit": "^2.2.9"
   }
 }

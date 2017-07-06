@@ -32,7 +32,7 @@
     "request": "^2.81.0",
     "request-promise-native": "^1.0.4",
     "sequelize": "^4.1.0",
-    "twitter": "^1.7.1"
+    "twit": "^2.2.9"
   },
   "devDependencies": {
     "sequelize-cli": "^2.7.0"

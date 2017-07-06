@@ -4,7 +4,7 @@ const cheerio = require('cheerio');
 const FeedParser = require('feedparser');
 const LRU = require('lru-cache');
 const request = require('request-promise-native');
-const Twitter = require('twitter');
+const Twitter = require('twit');
 const config = require('news-wires-twitter');
 
 const POLL_INTERVAL_MS = 300000; // 5 mins
