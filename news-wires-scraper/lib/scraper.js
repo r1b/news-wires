@@ -17,8 +17,8 @@ module.exports = function () {
         if (newsSource.twitterUserId === event.user.id_str) {
           let urls = (
             event.entities.urls
-              .map((url) => url.expanded_url)
-              .filter((url) => url !== null) // XXX not sure why these are missing sometimes
+              .map((urlEntitiy) => urlEntity.expanded_url || urlEntity.url)
+              .filter((url) => url !== null)
           );
           urls.forEach((url) => {
             newsSource
