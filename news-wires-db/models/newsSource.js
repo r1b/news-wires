@@ -26,9 +26,9 @@ module.exports = (sequelize, DataTypes) => {
       comment: '(OPTIONAL) The language and (optionally) country of news from this source',
       type: DataTypes.STRING
     },
-    headlineSelector: {
-      comment: '(OPTIONAL) CSS selector to parse headlines from this source',
-      type: DataTypes.STRING
+    headlineSelectors: {
+      comment: '(OPTIONAL) CSS selectors to parse headlines from this source',
+      type: DataTypes.ARRAY(DataTypes.STRING)
     }
   }, {
     freezeTableName: true,
@@ -79,23 +79,27 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   NewsSource.prototype.parseHeadline = function ($) {
-    let headline;
+    let headline = '';
 
-    if (this.headlineSelector) {
-      headline = $(this.headlineSelector).text();
+    if (this.headlineSelectors) {
+      for (let headlineSelector of this.headlineSelectors) {
+        headline = $(headlineSelector).text();
+        if (headline) {
+          break;
+        }
+      }
     }
-    else {
+
+    if (!headline) {
+      console.warn(`No headline selectors matched for ${this.name} - falling back to title`);
       headline = $('meta[property="og:title"]').attr('content') || $('title').text();
     }
 
-    [/\s+\-\s+/, /\s+\|\s+/].forEach((sepRegexp) => {
-      const headlineParts = headline.split(sepRegexp);
-      if (sepRegexp.test(headlineParts[headlineParts.length - 1])) {
-        console.warn(`Stripping ${sepRegexp} from ${headline}`);
-        headline = headline.split(sepRegexp)[0];
-      }
-    });
-    return headline;
+    if (!headline) {
+      console.warn(`Could not parse headline for ${this.name}`);
+    }
+
+    return headline.trim();
   };
 
   return NewsSource;
