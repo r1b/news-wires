@@ -6,7 +6,7 @@ module.exports = {
       'news_source',
       'headlineSelector',
       {
-        type: Sequelize.ARRAY(DataTypes.STRING)
+        type: Sequelize.ARRAY(Sequelize.STRING)
       }
     ).then(queryInterface.renameColumn(
       'news_source',
