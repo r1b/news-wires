@@ -2,30 +2,28 @@
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    return queryInterface.changeColumn(
+    return queryInterface.removeColumn(
       'news_source',
-      'headlineSelector',
+      'headlineSelector'
+    ).then(queryInterface.addColumn(
+      'news_source',
+      'headlineSelectors',
       {
         type: Sequelize.ARRAY(Sequelize.STRING)
       }
-    ).then(queryInterface.renameColumn(
-      'news_source',
-      'headlineSelector',
-      'headlineSelectors'
     ));
   },
 
   down: function (queryInterface, Sequelize) {
-    return queryInterface.changeColumn(
+    return queryInterface.removeColumn(
       'news_source',
-      'headlineSelectors',
+      'headlineSelectors'
+    ).then(queryInterface.addColumn(
+      'news_source',
+      'headlineSelector',
       {
         type: Sequelize.STRING
       }
-    ).then(queryInterface.renameColumn(
-      'news_source',
-      'headlineSelectors',
-      'headlineSelector'
     ));
   }
 };
