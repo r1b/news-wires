@@ -43,6 +43,9 @@ module.exports = (sequelize, DataTypes) => {
   NewsSource.prototype.scrape = function (url) {
     const that = this;
     const NewsItem = sequelize.models.NewsItem;
+    if (!url) {
+      return Promise.reject(`Empty url for ${this.name}`);
+    }
     console.info(`Fetching ${url}`);
     return (
       request({'uri': url, 'resolveWithFullResponse': true, 'maxRedirects': 30})
