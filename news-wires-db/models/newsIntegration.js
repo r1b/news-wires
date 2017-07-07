@@ -92,7 +92,7 @@ module.exports = (sequelize, DataTypes) => {
 
           if (!firstRun) {
             twitterClient.post('statuses/update', {
-              status: `${item.title}\n${item.link}`
+              status: `${item.link}`
             }, (error, tweet, response) => {
               if (error) {
                 this.emit('error', error);
@@ -143,7 +143,7 @@ module.exports = (sequelize, DataTypes) => {
 
               if (!firstRun) {
                 twitterClient.post('statuses/update', {
-                  status: `${$(element).text()} ${url}`
+                  status: `${url}`
                 }, (error, tweet, response) => {
                   if (error) {
                     console.error(error);
