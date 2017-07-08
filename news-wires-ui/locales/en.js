@@ -4,6 +4,7 @@ module.exports = (env) => {
     '$HREF': env === 'development' ? 'http://news.r1b.local:3000' : 'https://news.r1b.solutions',
     '/privacy': '/privacy',
     '/terms': '/terms',
+    '/legal': '/legal',
 
     // copy / strings
     'news': 'news',
@@ -17,6 +18,9 @@ module.exports = (env) => {
     'privacy': 'privacy',
     'privacy policy': 'privacy policy',
     'privacy policy copy': 'The only information News Wires stores about you is your public IP address. News Wires will never use any analytics software to track you. At the time of writing, News Wires has not been compelled to hand over any of its data to law enforcement',
-    'Not Found': 'Not Found'
+    'Not Found': 'Not Found',
+    'legal': 'legal',
+    'disclaimer copy': 'The author provides no guarantees regarding the accuracy, fairness or completeness of any reporting linked here. Many press agencies around the world are controlled by governments, oligarchs & intelligence organizations. The reader must take care to understand the political climate surrounding each news source they choose to read.',
+    'fair use copy': 'The headlines & links displayed here are protected under fair use.'
   };
 };
