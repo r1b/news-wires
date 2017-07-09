@@ -5,7 +5,7 @@ module.exports = (env) => {
     '/privacy': '/privacy',
     '/terms': '/terms',
     '/legal': '/legal',
-    '/contribute': '/contribute'.
+    '/contribute': '/contribute',
 
     // copy / strings
     'news': 'news',
