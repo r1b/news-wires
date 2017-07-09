@@ -5,6 +5,7 @@ module.exports = (env) => {
     '/privacy': '/privacidad',
     '/terms': '/términos',
     '/legal': '/legal',
+    '/contribute': '/contribuir',
 
     // copy / strings
     'news': 'noticias',
@@ -21,6 +22,15 @@ module.exports = (env) => {
     'Not Found': 'Extraviado',
     'legal': 'legal',
     'disclaimer copy': 'El autor no ofrece ninguna garantía con respecto a la exactitud, la imparcialidad o la integridad de cualquier informe vinculado aquí. Muchas agencias de prensa en todo el mundo están controladas por gobiernos, oligarcas y organizaciones de inteligencia. El lector debe tener cuidado de entender el clima político que rodea cada fuente de noticias que escogen leer.',
-    'fair use copy': 'Los titulares y los vínculos que se muestran aquí están protegidos bajo un uso justo.'
+    'fair use copy': 'Los titulares y los vínculos que se muestran aquí están protegidos bajo un uso justo.',
+    'Contribute': 'Contribuir',
+    'Code': 'Código',
+    'code copy': 'Puede encontrar el código fuente para los cables de noticias en <a href="https://github.com/r1b/news-wires/">GitHub</a>. Todas las contribuciones son bienvenidas.',
+    'Donate': 'Donar',
+    'donate copy': 'Actualmente cuesta ~$25 / mes para ejecutar noticias-cables. Si tiene algún dinero que no desea, por favor, finalícelo a 137YADrzRA8hKt3CQs4TQUANz7THnVPiSn (BTC) o 0x7Df1c2cA14bdFC222cB044251505E4Ee44d0a4cF (ETH). Si desea donar de otra manera (hardware, bebidas alcohólicas, gracias personales), póngase en contacto con el autor directamente en <a href="mailto:sysop+donate@r1b.solutions">sysop+donate@r1b.solutions</a>',
+    'Translate': 'Traducir',
+    'translate copy': 'El autor está buscando traductores para la copia del sitio. Si sabes español, mandarín, hindi o árabe y le gustaría que te paguen para traducir una copia, por favor ponte en contacto con <a href="mailto:sysop+translation@r1b.solutions">sysop+translation@r1b.solutions</a>.',
+    'Suggest a source': 'Sugerir una fuente',
+    'suggest copy': 'Si desea ver una fuente de noticias en particular en el sitio, póngase en contacto con <a href="mailto:sysop+tip@r1b.solutions">sysop+tip@r1b.solutions</a>. Entre las fuentes aceptables están las agencias de prensa que están en el negocio de las noticias (por ejemplo: Reuters, Associated Press, Agence France Presse) o agencias internacionales independientes (por ejemplo: Red de Noticias del Movimiento de los No Alineados, Inter Press Service). Las fuentes inaceptables incluyen radiodifusores (por ejemplo, CNN, NPR, BBC), periódicos (por ejemplo: Washington Post, New York Times, USA Today) y publicaciones políticas (por ejemplo, Socialist Worker, Reason). Se dará prioridad a las fuentes de noticias no occidentales con una perspectiva internacional.'
   };
 };
