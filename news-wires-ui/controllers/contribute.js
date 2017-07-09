@@ -1,5 +1,5 @@
 module.exports = (req, res, next) => {
-  res.render('legal', {
+  res.render('contribute', {
     title: req.i18n.__('Contribute'),
     codeSection: req.i18n.__('Code'),
     codeCopy: req.i18n.__('code copy'),
