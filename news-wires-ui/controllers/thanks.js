@@ -1,6 +1,6 @@
 module.exports = (req, res, next) => {
   res.render('thanks', {
-    title: req.i18n.__('Thank You'),
+    title: req.i18n.__('thanks'),
     alyssa: req.i18n.__('alyssa'),
     patrick: req.i18n.__('patrick'),
     victoria: req.i18n.__('victoria'),
