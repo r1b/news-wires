@@ -23,6 +23,7 @@ module.exports = (env) => {
     'legal': 'legal',
     'disclaimer copy': 'The author provides no guarantees regarding the accuracy, fairness or completeness of any reporting linked here. Many press agencies around the world are controlled by governments, oligarchs & intelligence organizations. The reader must take care to understand the political climate surrounding each news source they choose to read.',
     'fair use copy': 'The headlines & links displayed here are protected under fair use.',
+    'contribute': 'contribute',
     'Contribute': 'Contribute',
     'Code': 'Code',
     'code copy': 'You can find the source code for news-wires on <a href="https://github.com/r1b/news-wires/">GitHub</a>. All contributions are welcome.',

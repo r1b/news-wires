@@ -23,6 +23,7 @@ module.exports = (env) => {
     'legal': 'legal',
     'disclaimer copy': 'El autor no ofrece ninguna garantía con respecto a la exactitud, la imparcialidad o la integridad de cualquier informe vinculado aquí. Muchas agencias de prensa en todo el mundo están controladas por gobiernos, oligarcas y organizaciones de inteligencia. El lector debe tener cuidado de entender el clima político que rodea cada fuente de noticias que escogen leer.',
     'fair use copy': 'Los titulares y los vínculos que se muestran aquí están protegidos bajo un uso justo.',
+    'contribute': 'contribuir',
     'Contribute': 'Contribuir',
     'Code': 'Código',
     'code copy': 'Puede encontrar el código fuente para los cables de noticias en <a href="https://github.com/r1b/news-wires/">GitHub</a>. Todas las contribuciones son bienvenidas.',
