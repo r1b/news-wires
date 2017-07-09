@@ -6,6 +6,7 @@ module.exports = (env) => {
     '/terms': '/terms',
     '/legal': '/legal',
     '/contribute': '/contribute',
+    '/thanks': '/thanks',
 
     // copy / strings
     'news': 'news',
@@ -32,6 +33,14 @@ module.exports = (env) => {
     'Translate': 'Translate',
     'translate copy': 'The author is seeking translators for site copy. If you know Spanish, Mandarin, Hindi or Arabic & would like to be paid to translate copy please contact <a href="mailto:sysop+translation@r1b.solutions">sysop+translation@r1b.solutions</a>.',
     'Suggest a source': 'Suggest a source',
-    'suggest copy': 'If you would like to see a particular news source on the site please contact <a href="mailto:sysop+tip@r1b.solutions">sysop+tip@r1b.solutions</a>. Acceptable sources include press agencies that are in the business of selling news (e.g: Reuters, Associated Press, Agence France Presse) or independent international bureaus (e.g: Non-Aligned Movement News Network, Inter Press Service). Unacceptable sources include broadcasters (e.g: CNN, NPR, BBC), newspapers (e.g: Washington Post, New York Times, USA Today) and political publications (e.g: Socialist Worker, Reason). Priority will be given to non-Western news sources with an international perspective.'
+    'suggest copy': 'If you would like to see a particular news source on the site please contact <a href="mailto:sysop+tip@r1b.solutions">sysop+tip@r1b.solutions</a>. Acceptable sources include press agencies that are in the business of selling news (e.g: Reuters, Associated Press, Agence France Presse) or independent international bureaus (e.g: Non-Aligned Movement News Network, Inter Press Service). Unacceptable sources include broadcasters (e.g: CNN, NPR, BBC), newspapers (e.g: Washington Post, New York Times, USA Today) and political publications (e.g: Socialist Worker, Reason). Priority will be given to non-Western news sources with an international perspective.',
+    'thanks': 'thanks',
+    'Thank You': 'Thank You',
+    'alyssa': '<a href="http://abk.space/">Alyssa Keil</a> General support',
+    'patrick': '<a href="https://ptsteadman.com/">Patrick Steadman</a> UX advice',
+    'victoria': '<a href="https://www.victoriacampbell.io/">Victoria Campbell</a> UX advice',
+    'cryptome': '<a href="https://cryptome.org/">Cryptome</a> UX inspiration',
+    'bkkava': '<a href="http://www.brooklynkava.com/">Brooklyn Kava</a> General support',
+    'rebeccas': '<a href="https://www.facebook.com/rebeccasbushwick/">Rebecca\'s</a> General support'
   };
 };

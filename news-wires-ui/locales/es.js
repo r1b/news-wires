@@ -6,6 +6,7 @@ module.exports = (env) => {
     '/terms': '/términos',
     '/legal': '/legal',
     '/contribute': '/contribuir',
+    '/thanks': '/gracias',
 
     // copy / strings
     'news': 'noticias',
@@ -32,6 +33,14 @@ module.exports = (env) => {
     'Translate': 'Traducir',
     'translate copy': 'El autor está buscando traductores para la copia del sitio. Si sabes español, mandarín, hindi o árabe y le gustaría que te paguen para traducir una copia, por favor ponte en contacto con <a href="mailto:sysop+translation@r1b.solutions">sysop+translation@r1b.solutions</a>.',
     'Suggest a source': 'Sugerir una fuente',
-    'suggest copy': 'Si desea ver una fuente de noticias en particular en el sitio, póngase en contacto con <a href="mailto:sysop+tip@r1b.solutions">sysop+tip@r1b.solutions</a>. Entre las fuentes aceptables están las agencias de prensa que están en el negocio de las noticias (por ejemplo: Reuters, Associated Press, Agence France Presse) o agencias internacionales independientes (por ejemplo: Red de Noticias del Movimiento de los No Alineados, Inter Press Service). Las fuentes inaceptables incluyen radiodifusores (por ejemplo, CNN, NPR, BBC), periódicos (por ejemplo: Washington Post, New York Times, USA Today) y publicaciones políticas (por ejemplo, Socialist Worker, Reason). Se dará prioridad a las fuentes de noticias no occidentales con una perspectiva internacional.'
+    'suggest copy': 'Si desea ver una fuente de noticias en particular en el sitio, póngase en contacto con <a href="mailto:sysop+tip@r1b.solutions">sysop+tip@r1b.solutions</a>. Entre las fuentes aceptables están las agencias de prensa que están en el negocio de las noticias (por ejemplo: Reuters, Associated Press, Agence France Presse) o agencias internacionales independientes (por ejemplo: Red de Noticias del Movimiento de los No Alineados, Inter Press Service). Las fuentes inaceptables incluyen radiodifusores (por ejemplo, CNN, NPR, BBC), periódicos (por ejemplo: Washington Post, New York Times, USA Today) y publicaciones políticas (por ejemplo, Socialist Worker, Reason). Se dará prioridad a las fuentes de noticias no occidentales con una perspectiva internacional.',
+    'thanks': 'gracias',
+    'Thank You': 'Gracias',
+    'alyssa': '<a href="http://abk.space/">Alyssa Keil</a> Apoyo general',
+    'patrick': '<a href="https://ptsteadman.com/">Patrick Steadman</a> Consejo UX',
+    'victoria': '<a href="https://www.victoriacampbell.io/">Victoria Campbell</a> Consejo UX',
+    'cryptome': '<a href="https://cryptome.org/">Cryptome</a> Inspiración UX',
+    'bkkava': '<a href="http://www.brooklynkava.com/">Brooklyn Kava</a> Apoyo general',
+    'rebeccas': '<a href="https://www.facebook.com/rebeccasbushwick/">Rebecca\'s</a> Apoyo general'
   };
 };
