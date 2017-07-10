@@ -1,0 +1,261 @@
+#!/usr/bin/env node
+
+const sitemap = require('express-sitemap');
+const models = require('news-wires-db');
+const NEWS_ITEMS_PER_PAGE = require('../controllers/index').NEWS_ITEMS_PER_PAGE;
+
+const OUTPUT_PATH = process.argv[2] || process.env['CWD'];
+
+Promise.all([
+  models.NewsItem.count({where: {'$NewsSource.locale$':'en'}}).then((count) => {
+    const numPages = parseInt(count / NEWS_ITEMS_PER_PAGE);
+
+    if ((count % NEWS_ITEMS_PER_PAGE) != 0) {
+      numPages = numPages + 1;
+    }
+
+    let map = {};
+    let route = {};
+
+    for (let i = 1; i < numPages; i++) {
+      map[`/${i}`] = ['get'];
+      route[`/${i}`] = {}; // XXX Hreflang does not apply here - different content cross domains
+    }
+
+    return new Promise((resolve, reject) => {
+      sitemap({
+        sitemap: `${OUTPUT_PATH}/sitemap-news.xml`,
+        robots: `${OUTPUT_PATH}/robots-news.txt`,
+        http: 'https',
+        url: 'news.r1b.solutions',
+        map: {
+          '/': ['get'],
+          '/privacy': ['get'],
+          '/terms': ['get'],
+          '/legal': ['get'],
+          '/contribute': ['get'],
+          '/thanks': ['get'],
+          ...map
+        },
+        route: {
+          '/': {
+            'alternatepages': [
+              {
+                rel: 'alternate',
+                hreflang: 'en',
+                href: 'https://news.r1b.solutions/'
+              },
+              {
+                rel: 'alternate',
+                hreflang: 'es',
+                href: 'https://noticias.r1b.solutions/'
+              }
+            ]
+          },
+          '/privacy': {
+            'alternatepages': [
+              {
+                rel: 'alternate',
+                hreflang: 'en',
+                href: 'https://news.r1b.solutions/privacy'
+              },
+              {
+                rel: 'alternate',
+                hreflang: 'es',
+                href: 'https://noticias.r1b.solutions/privacidad'
+              }
+            ]
+          },
+          '/terms': {
+            'alternatepages': [
+              {
+                rel: 'alternate',
+                hreflang: 'en',
+                href: 'https://news.r1b.solutions/terms'
+              },
+              {
+                rel: 'alternate',
+                hreflang: 'es',
+                href: 'https://noticias.r1b.solutions/t%C3%A9rminos'
+              }
+            ]
+          },
+          '/legal': {
+            'alternatepages': [
+              {
+                rel: 'alternate',
+                hreflang: 'en',
+                href: 'https://news.r1b.solutions/legal'
+              },
+              {
+                rel: 'alternate',
+                hreflang: 'es',
+                href: 'https://noticias.r1b.solutions/legal'
+              }
+            ]
+          },
+          '/contribute': {
+            'alternatepages': [
+              {
+                rel: 'alternate',
+                hreflang: 'en',
+                href: 'https://news.r1b.solutions/contribute'
+              },
+              {
+                rel: 'alternate',
+                hreflang: 'es',
+                href: 'https://noticias.r1b.solutions/contribuir'
+              }
+            ]
+          },
+          '/thanks': {
+            'alternatepages': [
+              {
+                rel: 'alternate',
+                hreflang: 'en',
+                href: 'https://news.r1b.solutions/thanks'
+              },
+              {
+                rel: 'alternate',
+                hreflang: 'es',
+                href: 'https://noticias.r1b.solutions/gracias'
+              }
+            ]
+          },
+          ...route
+        }
+      }).toFile((error) => {
+        if (error) { reject(error) }
+        else { resolve() }
+      });
+    });
+
+  }),
+  models.NewsItem.count({where: {'$NewsSource.locale$':'es'}}).then((count) => {
+    const numPages = parseInt(count / NEWS_ITEMS_PER_PAGE);
+
+    if ((count % NEWS_ITEMS_PER_PAGE) != 0) {
+      numPages = numPages + 1;
+    }
+
+    let map = {};
+    let route = {};
+
+    for (let i = 1; i < numPages; i++) {
+      map[`/${i}`] = ['get'];
+      route[`/${i}`] = {}; // XXX Hreflang does not apply here - different content cross domains
+    }
+
+    return new Promise((resolve, reject) => {
+      sitemap({
+        sitemap: `${OUTPUT_PATH}/sitemap-noticias.xml`,
+        robots: `${OUTPUT_PATH}/robots-noticias.txt`,
+        http: 'https',
+        url: 'noticias.r1b.solutions',
+        map: {
+          '/': ['get'],
+          '/privacidad': ['get'],
+          '/t%C3%A9rminos': ['get'],
+          '/legal': ['get'],
+          '/contribuir': ['get'],
+          '/gracias': ['get'],
+          ...map
+        },
+        route: {
+          '/': {
+            'alternatepages': [
+              {
+                rel: 'alternate',
+                hreflang: 'en',
+                href: 'https://news.r1b.solutions/'
+              },
+              {
+                rel: 'alternate',
+                hreflang: 'es',
+                href: 'https://noticias.r1b.solutions/'
+              }
+            ]
+          },
+          '/privacidad': {
+            'alternatepages': [
+              {
+                rel: 'alternate',
+                hreflang: 'en',
+                href: 'https://news.r1b.solutions/privacy'
+              },
+              {
+                rel: 'alternate',
+                hreflang: 'es',
+                href: 'https://noticias.r1b.solutions/privacidad'
+              }
+            ]
+          },
+          '/t%C3%A9rminos': {
+            'alternatepages': [
+              {
+                rel: 'alternate',
+                hreflang: 'en',
+                href: 'https://news.r1b.solutions/terms'
+              },
+              {
+                rel: 'alternate',
+                hreflang: 'es',
+                href: 'https://noticias.r1b.solutions/t%C3%A9rminos'
+              }
+            ]
+          },
+          '/legal': {
+            'alternatepages': [
+              {
+                rel: 'alternate',
+                hreflang: 'en',
+                href: 'https://news.r1b.solutions/legal'
+              },
+              {
+                rel: 'alternate',
+                hreflang: 'es',
+                href: 'https://noticias.r1b.solutions/legal'
+              }
+            ]
+          },
+          '/contribuir': {
+            'alternatepages': [
+              {
+                rel: 'alternate',
+                hreflang: 'en',
+                href: 'https://news.r1b.solutions/contribute'
+              },
+              {
+                rel: 'alternate',
+                hreflang: 'es',
+                href: 'https://noticias.r1b.solutions/contribuir'
+              }
+            ]
+          },
+          '/gracias': {
+            'alternatepages': [
+              {
+                rel: 'alternate',
+                hreflang: 'en',
+                href: 'https://news.r1b.solutions/thanks'
+              },
+              {
+                rel: 'alternate',
+                hreflang: 'es',
+                href: 'https://noticias.r1b.solutions/gracias'
+              }
+            ]
+          },
+          ...route
+        }
+      }).toFile((error) => {
+        if (error) { reject(error) }
+        else { resolve() }
+      });
+    });
+  }),
+]).then(() => {
+  console.log('Success!');
+}).catch((error) => {
+  console.error(error);
+});

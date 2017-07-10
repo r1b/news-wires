@@ -1,0 +1,1 @@
+0 4 * * * ~/news-wires/news-wires-ui/bin/generate-sitemap /var/news-wires/static
