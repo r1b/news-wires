@@ -1,1 +1,5 @@
-0 4 * * * ~/news-wires/news-wires-ui/bin/generate-sitemap /var/news-wires/static
+0 4 * * * mkdir /tmp/sitemaps/ \
+            && ~/news-wires/news-wires-ui/bin/generate-sitemap /tmp/sitemaps/ \
+            && sudo cp /tmp/sitemaps/* /var/news-wires/static/
+            && sudo chown -R nginx:nginx /var/news-wires/static/*.txt
+            && sudo chown -R nginx:nginx /var/news-wires/static/*.xml
