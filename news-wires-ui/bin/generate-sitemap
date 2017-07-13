@@ -14,8 +14,100 @@ Promise.all([
       numPages = numPages + 1;
     }
 
-    let map = {};
-    let route = {};
+    let map = {
+      '/': ['get'],
+      '/privacy': ['get'],
+      '/terms': ['get'],
+      '/legal': ['get'],
+      '/contribute': ['get'],
+      '/thanks': ['get']
+    };
+    let route = {
+      '/': {
+        'alternatepages': [
+          {
+            rel: 'alternate',
+            hreflang: 'en',
+            href: 'https://news.r1b.solutions/'
+          },
+          {
+            rel: 'alternate',
+            hreflang: 'es',
+            href: 'https://noticias.r1b.solutions/'
+          }
+        ]
+      },
+      '/privacy': {
+        'alternatepages': [
+          {
+            rel: 'alternate',
+            hreflang: 'en',
+            href: 'https://news.r1b.solutions/privacy'
+          },
+          {
+            rel: 'alternate',
+            hreflang: 'es',
+            href: 'https://noticias.r1b.solutions/privacidad'
+          }
+        ]
+      },
+      '/terms': {
+        'alternatepages': [
+          {
+            rel: 'alternate',
+            hreflang: 'en',
+            href: 'https://news.r1b.solutions/terms'
+          },
+          {
+            rel: 'alternate',
+            hreflang: 'es',
+            href: 'https://noticias.r1b.solutions/t%C3%A9rminos'
+          }
+        ]
+      },
+      '/legal': {
+        'alternatepages': [
+          {
+            rel: 'alternate',
+            hreflang: 'en',
+            href: 'https://news.r1b.solutions/legal'
+          },
+          {
+            rel: 'alternate',
+            hreflang: 'es',
+            href: 'https://noticias.r1b.solutions/legal'
+          }
+        ]
+      },
+      '/contribute': {
+        'alternatepages': [
+          {
+            rel: 'alternate',
+            hreflang: 'en',
+            href: 'https://news.r1b.solutions/contribute'
+          },
+          {
+            rel: 'alternate',
+            hreflang: 'es',
+            href: 'https://noticias.r1b.solutions/contribuir'
+          }
+        ]
+      },
+      '/thanks': {
+        'alternatepages': [
+          {
+            rel: 'alternate',
+            hreflang: 'en',
+            href: 'https://news.r1b.solutions/thanks'
+          },
+          {
+            rel: 'alternate',
+            hreflang: 'es',
+            href: 'https://noticias.r1b.solutions/gracias'
+          }
+        ]
+      }
+    };
 
     for (let i = 1; i < numPages; i++) {
       map[`/${i}`] = ['get'];
@@ -28,102 +120,8 @@ Promise.all([
         robots: `${OUTPUT_PATH}/robots-news.txt`,
         http: 'https',
         url: 'news.r1b.solutions',
-        map: {
-          '/': ['get'],
-          '/privacy': ['get'],
-          '/terms': ['get'],
-          '/legal': ['get'],
-          '/contribute': ['get'],
-          '/thanks': ['get'],
-          ...map
-        },
-        route: {
-          '/': {
-            'alternatepages': [
-              {
-                rel: 'alternate',
-                hreflang: 'en',
-                href: 'https://news.r1b.solutions/'
-              },
-              {
-                rel: 'alternate',
-                hreflang: 'es',
-                href: 'https://noticias.r1b.solutions/'
-              }
-            ]
-          },
-          '/privacy': {
-            'alternatepages': [
-              {
-                rel: 'alternate',
-                hreflang: 'en',
-                href: 'https://news.r1b.solutions/privacy'
-              },
-              {
-                rel: 'alternate',
-                hreflang: 'es',
-                href: 'https://noticias.r1b.solutions/privacidad'
-              }
-            ]
-          },
-          '/terms': {
-            'alternatepages': [
-              {
-                rel: 'alternate',
-                hreflang: 'en',
-                href: 'https://news.r1b.solutions/terms'
-              },
-              {
-                rel: 'alternate',
-                hreflang: 'es',
-                href: 'https://noticias.r1b.solutions/t%C3%A9rminos'
-              }
-            ]
-          },
-          '/legal': {
-            'alternatepages': [
-              {
-                rel: 'alternate',
-                hreflang: 'en',
-                href: 'https://news.r1b.solutions/legal'
-              },
-              {
-                rel: 'alternate',
-                hreflang: 'es',
-                href: 'https://noticias.r1b.solutions/legal'
-              }
-            ]
-          },
-          '/contribute': {
-            'alternatepages': [
-              {
-                rel: 'alternate',
-                hreflang: 'en',
-                href: 'https://news.r1b.solutions/contribute'
-              },
-              {
-                rel: 'alternate',
-                hreflang: 'es',
-                href: 'https://noticias.r1b.solutions/contribuir'
-              }
-            ]
-          },
-          '/thanks': {
-            'alternatepages': [
-              {
-                rel: 'alternate',
-                hreflang: 'en',
-                href: 'https://news.r1b.solutions/thanks'
-              },
-              {
-                rel: 'alternate',
-                hreflang: 'es',
-                href: 'https://noticias.r1b.solutions/gracias'
-              }
-            ]
-          },
-          ...route
-        }
+        map: map,
+        route: route
       }).toFile((error) => {
         if (error) { reject(error) }
         else { resolve() }
@@ -138,8 +136,100 @@ Promise.all([
       numPages = numPages + 1;
     }
 
-    let map = {};
-    let route = {};
+    let map = {
+      '/': ['get'],
+      '/privacidad': ['get'],
+      '/t%C3%A9rminos': ['get'],
+      '/legal': ['get'],
+      '/contribuir': ['get'],
+      '/gracias': ['get']
+    };
+    let route = {
+      '/': {
+        'alternatepages': [
+          {
+            rel: 'alternate',
+            hreflang: 'en',
+            href: 'https://news.r1b.solutions/'
+          },
+          {
+            rel: 'alternate',
+            hreflang: 'es',
+            href: 'https://noticias.r1b.solutions/'
+          }
+        ]
+      },
+      '/privacidad': {
+        'alternatepages': [
+          {
+            rel: 'alternate',
+            hreflang: 'en',
+            href: 'https://news.r1b.solutions/privacy'
+          },
+          {
+            rel: 'alternate',
+            hreflang: 'es',
+            href: 'https://noticias.r1b.solutions/privacidad'
+          }
+        ]
+      },
+      '/t%C3%A9rminos': {
+        'alternatepages': [
+          {
+            rel: 'alternate',
+            hreflang: 'en',
+            href: 'https://news.r1b.solutions/terms'
+          },
+          {
+            rel: 'alternate',
+            hreflang: 'es',
+            href: 'https://noticias.r1b.solutions/t%C3%A9rminos'
+          }
+        ]
+      },
+      '/legal': {
+        'alternatepages': [
+          {
+            rel: 'alternate',
+            hreflang: 'en',
+            href: 'https://news.r1b.solutions/legal'
+          },
+          {
+            rel: 'alternate',
+            hreflang: 'es',
+            href: 'https://noticias.r1b.solutions/legal'
+          }
+        ]
+      },
+      '/contribuir': {
+        'alternatepages': [
+          {
+            rel: 'alternate',
+            hreflang: 'en',
+            href: 'https://news.r1b.solutions/contribute'
+          },
+          {
+            rel: 'alternate',
+            hreflang: 'es',
+            href: 'https://noticias.r1b.solutions/contribuir'
+          }
+        ]
+      },
+      '/gracias': {
+        'alternatepages': [
+          {
+            rel: 'alternate',
+            hreflang: 'en',
+            href: 'https://news.r1b.solutions/thanks'
+          },
+          {
+            rel: 'alternate',
+            hreflang: 'es',
+            href: 'https://noticias.r1b.solutions/gracias'
+          }
+        ]
+      }
+    };
 
     for (let i = 1; i < numPages; i++) {
       map[`/${i}`] = ['get'];
@@ -152,102 +242,8 @@ Promise.all([
         robots: `${OUTPUT_PATH}/robots-noticias.txt`,
         http: 'https',
         url: 'noticias.r1b.solutions',
-        map: {
-          '/': ['get'],
-          '/privacidad': ['get'],
-          '/t%C3%A9rminos': ['get'],
-          '/legal': ['get'],
-          '/contribuir': ['get'],
-          '/gracias': ['get'],
-          ...map
-        },
-        route: {
-          '/': {
-            'alternatepages': [
-              {
-                rel: 'alternate',
-                hreflang: 'en',
-                href: 'https://news.r1b.solutions/'
-              },
-              {
-                rel: 'alternate',
-                hreflang: 'es',
-                href: 'https://noticias.r1b.solutions/'
-              }
-            ]
-          },
-          '/privacidad': {
-            'alternatepages': [
-              {
-                rel: 'alternate',
-                hreflang: 'en',
-                href: 'https://news.r1b.solutions/privacy'
-              },
-              {
-                rel: 'alternate',
-                hreflang: 'es',
-                href: 'https://noticias.r1b.solutions/privacidad'
-              }
-            ]
-          },
-          '/t%C3%A9rminos': {
-            'alternatepages': [
-              {
-                rel: 'alternate',
-                hreflang: 'en',
-                href: 'https://news.r1b.solutions/terms'
-              },
-              {
-                rel: 'alternate',
-                hreflang: 'es',
-                href: 'https://noticias.r1b.solutions/t%C3%A9rminos'
-              }
-            ]
-          },
-          '/legal': {
-            'alternatepages': [
-              {
-                rel: 'alternate',
-                hreflang: 'en',
-                href: 'https://news.r1b.solutions/legal'
-              },
-              {
-                rel: 'alternate',
-                hreflang: 'es',
-                href: 'https://noticias.r1b.solutions/legal'
-              }
-            ]
-          },
-          '/contribuir': {
-            'alternatepages': [
-              {
-                rel: 'alternate',
-                hreflang: 'en',
-                href: 'https://news.r1b.solutions/contribute'
-              },
-              {
-                rel: 'alternate',
-                hreflang: 'es',
-                href: 'https://noticias.r1b.solutions/contribuir'
-              }
-            ]
-          },
-          '/gracias': {
-            'alternatepages': [
-              {
-                rel: 'alternate',
-                hreflang: 'en',
-                href: 'https://news.r1b.solutions/thanks'
-              },
-              {
-                rel: 'alternate',
-                hreflang: 'es',
-                href: 'https://noticias.r1b.solutions/gracias'
-              }
-            ]
-          },
-          ...route
-        }
+        map: map,
+        route: route
       }).toFile((error) => {
         if (error) { reject(error) }
         else { resolve() }
