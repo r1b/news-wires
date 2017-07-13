@@ -2,13 +2,18 @@
 
 const sitemap = require('express-sitemap');
 const models = require('news-wires-db');
-const NEWS_ITEMS_PER_PAGE = require('../controllers/index').NEWS_ITEMS_PER_PAGE;
 
-const OUTPUT_PATH = process.argv[2] || process.env['CWD'];
+// FIXME : Defined in multiple places
+const NEWS_ITEMS_PER_PAGE = 20;
+
+const OUTPUT_PATH = process.argv[2] || process.env['PWD'];
 
 Promise.all([
-  models.NewsItem.count({where: {'$NewsSource.locale$':'en'}}).then((count) => {
-    const numPages = parseInt(count / NEWS_ITEMS_PER_PAGE);
+  models.NewsItem.count({
+    include: [models.NewsSource],
+    where: {'$NewsSource.locale$':'en'}
+  }).then((count) => {
+    let numPages = parseInt(count / NEWS_ITEMS_PER_PAGE);
 
     if ((count % NEWS_ITEMS_PER_PAGE) != 0) {
       numPages = numPages + 1;
@@ -129,8 +134,11 @@ Promise.all([
     });
 
   }),
-  models.NewsItem.count({where: {'$NewsSource.locale$':'es'}}).then((count) => {
-    const numPages = parseInt(count / NEWS_ITEMS_PER_PAGE);
+  models.NewsItem.count({
+    include: [models.NewsSource],
+    where: {'$NewsSource.locale$':'es'}
+  }).then((count) => {
+    let numPages = parseInt(count / NEWS_ITEMS_PER_PAGE);
 
     if ((count % NEWS_ITEMS_PER_PAGE) != 0) {
       numPages = numPages + 1;
@@ -252,6 +260,8 @@ Promise.all([
   }),
 ]).then(() => {
   console.log('Success!');
+  process.exit(0);
 }).catch((error) => {
   console.error(error);
+  process.exit(1);
 });
