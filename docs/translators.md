@@ -97,7 +97,7 @@ bubble with the title **Commit changes**. Select the radio button that says *Cre
 pull request*. You can edit the generated branch name if you would like - it doesn't matter. Click the green button that 
 says *Propose file change*.
 
-### Creating a pull request
+### Step 5: Create a pull request
 
 You will be navigated to the pull request interface. Modify the title at the top of the bubble if you like - it doesn't 
 matter. Add a descriptive comment that summarizes your changes.
