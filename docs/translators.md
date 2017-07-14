@@ -64,7 +64,7 @@ This is the most likely scenario - the copy that you want to edit is in the [eng
 1. Identify the *value* in the english file that contains the copy you want to translate.
 2. Note the corresponding *key*
 3. Open the file containing the copy in your target language.
-4. Identify the *key* you noted earlier.
+4. Navigate to the *key* you noted earlier.
 5. Edit the *value* associated with that key.
 
 If the *key* does not exist in the file for your target language, follow the instructions in [Adding new copy](#adding-new-copy).
