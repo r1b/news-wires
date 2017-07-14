@@ -70,7 +70,7 @@ This is the most likely scenario - the copy that you want to edit is in the [eng
 If the *key* does not exist in the file for your target language, follow the instructions in [Adding new copy](#adding-new-copy).
 
 
-#### Adding new copy
+#### Add new copy
 
 You will need to create an entirely new entry in the JSON object.
 
@@ -83,7 +83,7 @@ the key. Keys are **always** written in english. Keys are **unique** - a new key
 5. Append a colon & space to the key
 6. Enter a quoted value.
 
-#### Updating existing copy
+#### Update existing copy
 
 In this scenario, the copy you need to edit is already available & translated.
 
