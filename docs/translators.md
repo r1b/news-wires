@@ -55,9 +55,19 @@ In news-wires we have a few formatting preferences:
 
 In the context of our work, a *key* is a unique identifier for its corresponding *value*. The *value* contains the actual copy.
 
-#### Translating existing copy
+Now we will detail three possible editing scenarios.
+
+#### Translate existing copy
 
 This is the most likely scenario - the copy that you want to edit is in the [english file](https://github.com/r1b/news-wires/blob/master/news-wires-ui/locales/en.js).
+
+1. Identify the *value* in the english file that contains the copy you want to translate.
+2. Note the corresponding *key*
+3. Open the file containing the copy in your target language.
+4. Identify the *key* you noted earlier.
+5. Edit the *value* associated with that key.
+
+If the *key* does not exist in the file for your target language, follow the instructions in [Adding new copy](#Adding-new-copy).
 
 
 #### Adding new copy
@@ -80,6 +90,12 @@ In this scenario, the copy you need to edit is already available & translated.
 1. Identify the line in your target file that has the copy you want to edit.
 2. Edit the quoted value to your liking
 
+### Submit your copy for review
+
+At the bottom of the GitHub UI there is a bubble with the title **Commit changes**. Select the radio button that says
+*Create a new branch for this commit and start a pull request*. You can edit the generated branch name if you would like - 
+it doesn't matter. Click the green button that says *Propose file change*.
+
 ### FAQ
 
 #### I need to enter a single quote in some copy
@@ -89,6 +105,14 @@ You must *escape* the quote like this: `\'`.
 #### I need to add bullets, links or other HTML in the copy
 
 No problem! You can include any HTML that you would like.
+
+#### I want to save my work as I go along
+
+I'm glad you do! You have many options:
+
+* Create a branch ahead of time and commit changes at your leisure (instructions TODO)
+* Periodically copy the entire file to your clipboard
+* Edit the JSON in an external editor and paste the final result into the GitHub UI
 
 ### Summary
 
