@@ -67,7 +67,7 @@ This is the most likely scenario - the copy that you want to edit is in the [eng
 4. Navigate to the *key* you noted earlier.
 5. Edit the *value* associated with that key.
 
-If the *key* does not exist in the file for your target language, follow the instructions in [Adding new copy](#adding-new-copy).
+If the *key* does not exist in the file for your target language, follow the instructions in [Add new copy](#adding-new-copy).
 
 
 #### Add new copy
