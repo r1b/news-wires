@@ -21,16 +21,47 @@ as a collaborator.
 
 ## Workflow
 
+As we lay out this workflow we will reference the following example `en.js` and `es.js` language files.
+
+```javascript
+// en.js
+module.exports = (env) => {
+  return {
+    'hello world': 'hello world',
+    'goodbye': 'goodbye'
+  };
+};
+```
+
+```javascript
+// es.js
+module.exports = (env) => {
+  return {
+    'hello world': 'hola mundo'
+  };
+};
+```
+
+Your tasks with respect to this example are as follows:
+
+1. Add an exclaimation point to the phrase `hello world` in each language.
+2. Add the entry for `goodbye` to the spanish language file.
+3. Update the entry for `goodbye` in each language to say `goodbye my friend`.
+
 ### Step 1: Identify the file you need to edit
 
 Each file in the [locales folder](https://github.com/r1b/news-wires/tree/master/news-wires-ui/locales) has a
 [two-character code](http://www.ietf.org/rfc/rfc3066.txt) indicating which language it targets. You can find the name of your
 target language by consulting a [lookup table](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
 
+In our example we will be editing both files.
+
 ### Step 2: Open the file in GitHub
 
 Navigate to the target file in the GitHub UI. At the very top of the file, just before the code is displayed, you will see a
 number of icons on the right hand side. Click the "pencil" icon to begin editing the file.
+
+For our example you would open each of `en.js` and `es.js` in a new browser tab.
 
 ### Step 3: Edit the file
 
@@ -55,7 +86,7 @@ In news-wires we have a few formatting preferences:
 
 In the context of our work, a *key* is a unique identifier for its corresponding *value*. The *value* contains the actual copy.
 
-Now we will detail three possible editing scenarios.
+Now we will detail three possible editing scenarios & use them to complete our example task.
 
 #### Translate existing copy
 
@@ -69,6 +100,33 @@ This is the most likely scenario - the copy that you want to edit is in the [eng
 
 If the *key* does not exist in the file for your target language, follow the instructions in [Add new copy](#adding-new-copy).
 
+In the first step of our example we need to:
+
+*Add an exclaimation point to the phrase `hello world` in each language.*
+
+So we will modify each file to look like this:
+
+```javascript
+// en.js
+module.exports = (env) => {
+  return {
+    'hello world': 'hello world!',
+    'goodbye': 'goodbye'
+  };
+};
+```
+
+```javascript
+// es.js
+module.exports = (env) => {
+  return {
+    'hello world': '¡hola mundo!'
+  };
+};
+```
+
+For the second step of our example, we note that the `goodbye` key does not exist in the Spanish language file - so we
+proceed to the following scenario.
 
 #### Add new copy
 
@@ -83,6 +141,18 @@ the key. Keys are **always** written in english. Keys are **unique** - a new key
 5. Append a colon & space to the key
 6. Enter a quoted value.
 
+In our example we need to add a `goodbye` key with a translated value to the spanish language file. We update it to look like this:
+
+```javascript
+// es.js
+module.exports = (env) => {
+  return {
+    'hello world': '¡hola mundo!',
+    'goodbye': 'adios'
+  };
+};
+```
+
 #### Update existing copy
 
 In this scenario, the copy you need to edit is already available & translated.
@@ -90,12 +160,36 @@ In this scenario, the copy you need to edit is already available & translated.
 1. Identify the line in your target file that has the copy you want to edit.
 2. Edit the quoted value to your liking
 
+For the last step of our example we want to update the `goodbye` key in each file to say `goodbye my friend` in their respective languages. The files now look like this:
+
+```javascript
+// en.js
+module.exports = (env) => {
+  return {
+    'hello world': 'hello world!',
+    'goodbye': 'goodbye my friend'
+  };
+};
+```
+
+```javascript
+// es.js
+module.exports = (env) => {
+  return {
+    'hello world': '¡hola mundo!',
+    'goodbye': 'adios mi amigo'
+  };
+};
+```
+
 ### Step 4: Submit your copy for review
 
 Once you are finished with your edits you can submit your changes to a reviewer. At the bottom of the GitHub UI there is a 
 bubble with the title **Commit changes**. Select the radio button that says *Create a new branch for this commit and start a 
 pull request*. You can edit the generated branch name if you would like - it doesn't matter. Click the green button that 
 says *Propose file change*.
+
+In our example, you would perform this step for each of `en.js` and `es.js`, initiating two pull requests.
 
 ### Step 5: Create a pull request
 
@@ -113,6 +207,8 @@ The reviewer will be notified that you have completed your edits. Shortly they w
 looks OK the reviewer will approve your request and merge the changes. If further editing is required, the reviewer will 
 correspond with you in the comments section of the pull request that you created. You should receive email notifications for 
 these comments so there is no need to repeatedly check the pull request page.
+
+For our example, you would complete & submit each pull request you created in the previous step.
 
 Congratulations! You are now a news-wires contributor. 🎉
 
