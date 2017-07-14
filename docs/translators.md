@@ -90,11 +90,31 @@ In this scenario, the copy you need to edit is already available & translated.
 1. Identify the line in your target file that has the copy you want to edit.
 2. Edit the quoted value to your liking
 
-### Submit your copy for review
+### Step 4: Submit your copy for review
 
-At the bottom of the GitHub UI there is a bubble with the title **Commit changes**. Select the radio button that says
-*Create a new branch for this commit and start a pull request*. You can edit the generated branch name if you would like - 
-it doesn't matter. Click the green button that says *Propose file change*.
+Once you are finished with your edits you can submit your changes to a reviewer. At the bottom of the GitHub UI there is a 
+bubble with the title **Commit changes**. Select the radio button that says *Create a new branch for this commit and start a 
+pull request*. You can edit the generated branch name if you would like - it doesn't matter. Click the green button that 
+says *Propose file change*.
+
+### Creating a pull request
+
+You will be navigated to the pull request interface. Modify the title at the top of the bubble if you like - it doesn't 
+matter. Add a descriptive comment that summarizes your changes.
+
+On the right hand side there is a column where you can add additional metadata to the pull request. Click the link under
+**Reviewers** that says *request one*. Find your reviewer in the list of users - `r1b` is the best reviewer if you have not 
+been assigned another. Additionally, click the link under **Assignees** that says *assign yourself*.
+
+Review your changes and the corresponding summary. If everything looks OK click the green button that says *Create pull 
+request*.
+
+The reviewer will be notified that you have completed your edits. Shortly they will review your pull request. If everything 
+looks OK the reviewer will approve your request and merge the changes. If further editing is required, the reviewer will 
+correspond with you in the comments section of the pull request that you created. You should receive email notifications for 
+these comments so there is no need to repeatedly check the pull request page.
+
+Congratulations! You are now a news-wires contributor. 🎉
 
 ### FAQ
 
