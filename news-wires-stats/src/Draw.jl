@@ -1,10 +1,7 @@
 module Draw
     using Gadfly
 
-    export plot_source_post_frequency \
-           plot_language_post_frequency \
-           plot_source_cum_posts \
-           plot_language_cum_posts
+    export plot_source_post_frequency, plot_language_post_frequency, plot_source_cum_posts, plot_language_cum_posts
 
     function plot_source_post_frequency(data)
         p = plot(
@@ -54,7 +51,7 @@ module Draw
     end
 
     function plot_language_cum_posts(data)
-        plot(
+        p = plot(
             data,
             x="day",
             y="cumsum",
@@ -66,5 +63,7 @@ module Draw
             Guide.colorkey("Language code"),
             Scale.y_continuous(format=:plain)
         )
+        img = SVG("lcp.svg", 4inch, 3inch)
+        draw(img, p)
     end
 end

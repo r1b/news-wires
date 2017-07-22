@@ -1,6 +1,12 @@
+__precompile__()
 module Stats
+    export stats
+
     include("Data.jl")
     include("Draw.jl")
+
+    using .Data
+    using .Draw
 
     function stats()
         data = make_dataset()
@@ -12,6 +18,6 @@ module Stats
         plot_source_cum_posts(source_cumsum)
 
         language_cumsum = make_cumsum(data, [:day, :locale], :locale)
-        plot_language_cum_posts(source_cumsum)
+        plot_language_cum_posts(language_cumsum)
     end
 end
