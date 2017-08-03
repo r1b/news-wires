@@ -3,7 +3,7 @@ module.exports = (env) => {
     // Values
     '$HREF': env === 'development' ? 'http://noticias.r1b.local:3000' : 'https://noticias.r1b.solutions',
     '/privacy': '/privacidad',
-    '/terms': '/términos',
+    '/terms': '/terminos',
     '/legal': '/legal',
     '/contribute': '/contribuir',
     '/thanks': '/gracias',
