@@ -9,7 +9,7 @@ module.exports = (env) => {
     '/thanks': '/gracias',
 
     // copy / strings
-    'news': 'noticias',
+    'news': 'noticias ',
     'More': 'Más',
     'Error': 'Error',
     'Invalid page': 'Página no válida',
