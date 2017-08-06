@@ -7,6 +7,7 @@ module.exports = (req, res, next) => {
     cryptome: req.i18n.__('cryptome'),
     bkkava: req.i18n.__('bkkava'),
     rebeccas: req.i18n.__('rebeccas'),
+    natalie: req.i18n.__('natalie'),
     locales: req.i18n.locales
   });
 };
