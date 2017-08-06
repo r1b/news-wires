@@ -40,6 +40,6 @@ module.exports = (env) => {
     'cryptome': '<a href="https://cryptome.org/">Cryptome</a> Inspiración UX',
     'bkkava': '<a href="http://www.brooklynkava.com/">Brooklyn Kava</a> Apoyo general',
     'rebeccas': '<a href="https://www.facebook.com/rebeccasbushwick/">Rebecca\'s</a> Apoyo general',
-    'natalie': '<a href="https://natalieviefencing.wordpress.com/">Natalie Vie</a> Spanish Translation'
+    'natalie': '<a href="https://natalieviefencing.wordpress.com/">Natalie Vie</a> Traducción Española'
   };
 };
